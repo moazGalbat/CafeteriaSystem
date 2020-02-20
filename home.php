@@ -41,9 +41,18 @@ if (!isset($_SESSION['loggedin'])) {
                     <button class="deleteBtn">X</button>
                 </div> -->
                 </div>
-
+                <label id="notes" for="notes">Notes:</label>
+                <textarea name="notes" id="notes" rows="4" cols="50">
+                </textarea>
+                <label for="room">Room</label>
+                <select name="room" id="room">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <hr>
                 <div id="orderFooter" class="orderFooter">
-                    <span id=total></span>
+                    <span id=total></span><br>
                     <button type="submit">Confirm</button>
                 </div>
             </form>
@@ -63,10 +72,10 @@ if (!isset($_SESSION['loggedin'])) {
             while ($ele = $stmt->fetch()) {
                 echo ("<div>
                 <img class='item' width='200px' data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src={$ele['pic']}  />
-                <p>{$ele['price'] } EPG</p>
+                <p>{$ele['price']} EPG</p>
             </div>");
             }
-            $db=null;
+            $db = null;
             ?>
             <!-- <div>
                 <img class="item" data-price="7" data-name="tea" id="tea" src="images/image.jpg" alt="" />

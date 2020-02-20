@@ -70,4 +70,13 @@
     align-self: flex-end;
   }
 
+
+  textarea {
+    resize: none;
+  }
+
+  #notes {
+    display: block;
+  }
+
   

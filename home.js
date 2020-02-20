@@ -90,7 +90,7 @@ for (const item of items) {
             let itemPrice=price*parseInt(quantity.value);
             elementPrice.innerText=itemPrice;
 
-            total.innerText=totalOrderPrice();
+            total.innerText="Total: "+totalOrderPrice();
         })
 
         plusBtn.addEventListener("click",()=>{
@@ -99,11 +99,11 @@ for (const item of items) {
             let itemPrice=price*parseInt(quantity.value);
             elementPrice.innerText=itemPrice;
 
-            total.innerText=totalOrderPrice();
+            total.innerText="Total: "+totalOrderPrice();
 
         })
 
-        total.innerText=totalOrderPrice();
+        total.innerText="Total: "+totalOrderPrice();
     })
 }
 
