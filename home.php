@@ -63,11 +63,30 @@ if (!isset($_SESSION['loggedin'])) {
 
             <?php
             include 'config.php';
+            //latest order
+            $user_id=$_SESSION['id'];
 
+            $query="SELECT p.name , o.quantity ,p.pic FROM order_product o,product p 
+            WHERE p.product_id=o.product_id 
+            AND order_id=(SELECT order_id FROM orders WHERE user_id=$user_id ORDER by date DESC limit 1 )";
+            $stmt = $db->query($query);
+            $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            echo "<div class='latestOrder'><span>Latest Order</span>";
+            while ($ele = $stmt->fetch()) {
+                echo ("<div>
+                <img width='200px' src={$ele['pic']}  />
+                <p>{$ele['name']}::quantity={$ele['quantity']}</p>
+            </div>");
+            } 
+            echo "</div>";
+
+            //show all products
             $query = "SELECT product_id,name,price,pic FROM product";
             $stmt = $db->query($query);
 
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+            echo "<div class='availableProducts'><span>Available Products</span>";
 
             while ($ele = $stmt->fetch()) {
                 echo ("<div>
@@ -75,6 +94,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <p>{$ele['price']} EPG</p>
             </div>");
             }
+            echo "</div>";
             $db = null;
             ?>
             <!-- <div>

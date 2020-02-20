@@ -43,10 +43,23 @@
     -ms-flex: 2;
     flex: 2;
     display: flex;
-    justify-content:space-around;
+    flex-direction: row;
+    justify-content:start;
+    align-items: center;
     flex-wrap: wrap;
   }
 
+  .latestOrder,.availableProducts{
+    display: flex;
+    flex-direction: row;
+    flex: 2;
+    justify-content: space-around;
+    align-items: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: whitesmoke;
+    border-radius: 10%;
+  }
   /* .item img{
       width: 200px;
       height: 200px;
