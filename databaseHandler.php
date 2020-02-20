@@ -4,12 +4,10 @@ class DbHandler {
     // Define database information
     private $host = 'localhost';
     private $username = 'root';
-    private $password = '';
+    private $password = '123';
     private $dbName = 'cafteria';
     // private $conn;
 
-
-    
     public function connect(){
         try{
             $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbName;
@@ -21,6 +19,7 @@ class DbHandler {
         catch(PDOException $e)
             {
             echo "Connection failed: " . $e->getMessage();
+            die();
             }
     }
 
@@ -47,17 +46,11 @@ class DbHandler {
             $stmt->bindParam(':is_admin', $isAdmin);
             $result = $stmt->execute();  
 
-            // if ($result) {
-            //     echo "inserted successfuly";
-            // }
-            // else {
-            //     echo "Failed";
-            // }
             $this->disConnect();
-            }
-        catch(PDOException $e)
+
+            }catch(PDOException $e)
             {
-            echo $stmt . "<br>" . $e->getMessage();
+            echo $conn . "<br>" . $e->getMessage();
             }
     
     }
@@ -73,7 +66,7 @@ class DbHandler {
             }
         catch(PDOException $e)
             {
-            echo $stmt . "<br>" . $e->getMessage();
+                echo $conn . "<br>" . $e->getMessage();
             }
     
     }
@@ -89,7 +82,7 @@ class DbHandler {
             }
         catch(PDOException $e)
             {
-            echo $stmt . "<br>" . $e->getMessage();
+            echo $conn . "<br>" . $e->getMessage();
             }
     
     }
@@ -108,6 +101,6 @@ class DbHandler {
 }
 
 $test =new DbHandler();
-$test->addUser("7","7","7","7","7","7",7);
+$test->addUser("islam","123","7","7","7","7",1);
 
 ?>
