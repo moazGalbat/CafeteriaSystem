@@ -57,7 +57,7 @@ class DbHandler {
             }
         catch(PDOException $e)
             {
-            echo $sql . "<br>" . $e->getMessage();
+            echo $stmt . "<br>" . $e->getMessage();
             }
     
     }
@@ -73,7 +73,7 @@ class DbHandler {
             }
         catch(PDOException $e)
             {
-            echo $sql . "<br>" . $e->getMessage();
+            echo $stmt . "<br>" . $e->getMessage();
             }
     
     }
@@ -89,7 +89,7 @@ class DbHandler {
             }
         catch(PDOException $e)
             {
-            echo $sql . "<br>" . $e->getMessage();
+            echo $stmt . "<br>" . $e->getMessage();
             }
     
     }
@@ -104,7 +104,6 @@ class DbHandler {
     public function deleteProduct(){}
     public function updateUserData(){}
     public function updateProduct(){}
-    public function deleteProduct(){}
 
 }
 
