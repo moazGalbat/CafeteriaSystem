@@ -28,7 +28,7 @@ if (!isset($_SESSION['loggedin'])) {
 
     <div class="row">
         <div class="column side" style="background-color:#aaa;">
-            <form action="insertOrder.php" method="post">
+            <form id="form" action="insertOrder.php" method="post">
                 <div id="list" class="order">
                     <!-- <div class="list_element" id="tea_element">
                     <span>tea</span>
@@ -46,7 +46,7 @@ if (!isset($_SESSION['loggedin'])) {
                 </textarea>
                 <label for="room">Room</label>
                 <select name="room" id="room">
-                    <option value="1">1</option>
+                    <option value="ttttt">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                 </select>
