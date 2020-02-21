@@ -23,12 +23,12 @@ if (mysqli_connect_errno()) {
   }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userName = test_input($_POST[username]);
-    $email = test_input($_POST[email]);
-    $password = test_input($_POST[password]);
+    $userName = test_input($_POST['username']);
+    $email = test_input($_POST['email']);
+    $password = test_input($_POST['password']);
     $hash = password_hash($password,PASSWORD_DEFAULT);
-    $room = test_input($_POST[room]);
-    $exten = test_input($_POST[ext]);
+    $room = test_input($_POST['room']);
+    $exten = test_input($_POST['ext']);
     $hidden_id = test_input($_POST['hidden_id']);
     if(isset($_FILES['image'])){
         $errors= array();      
@@ -90,5 +90,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 }
 
-$conn->close();
+$conn=null;
 ?>
