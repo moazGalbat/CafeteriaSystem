@@ -107,6 +107,7 @@ if (!isset($_SESSION['loggedin'])) {
             ?>
         </div>
     </div>
+    
     <!-- <div class="footer">
         <p>Footer</p>
     </div> -->
