@@ -9,9 +9,9 @@
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created At</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Image</th>
             <th>Action</th>
           </tr>
         </thead>
