@@ -2,6 +2,8 @@
 $allData="";
 $allData = $_POST['data'];
 $data_arr= explode(",",$allData);
+$response="";
+$response=$_GET['user'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +13,7 @@ $data_arr= explode(",",$allData);
     <link href="addUser.css" rel="stylesheet" type="text/css">
     <title>cafeteria/addUser</title>
 </head>
-<body>
+<body onload="dbreaction()">
     <div id="main-container">
         <div id="card">
             <div id="header">
@@ -60,6 +62,7 @@ $data_arr= explode(",",$allData);
                 <input type="reset" form="form" id="reset">
             </div>
     </div>
+    <div id="notification"></div>
 </div>
 <script>
 let password = document.querySelector("[name=password]");
@@ -77,6 +80,17 @@ function confimation(){
 password.addEventListener("change",confimation);
 confirm.addEventListener("change",confimation);
 
+
+let response = <?php echo json_encode($response)?>;
+console.log(response)
+let notification = document.getElementById("notification");
+function dbreaction(){
+    if(response == "accepted"){
+        notification.innerHTML="<p class='note'>User updated successfully</p>";
+        notification.style.display='block';
+        notification.style.animation='notify 5s forwards';
+}
+}
 
 </script>
 </body>

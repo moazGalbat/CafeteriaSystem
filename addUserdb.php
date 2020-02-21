@@ -68,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($flag==true){       
                 echo "This user ALREADY EXISTS";
                 $user="notAccepted";
+                header('Location: addUser.php?user='.$user.'');
         }else {
             
                 $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic) Values(?,?,?,?,?,?)";
@@ -75,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name']]);
                 echo "row created successfully";
                 $user="accepted";
+                header('Location: addUser.php?user='.$user.'');
             }
 
         }else{
@@ -82,12 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt=$conn->prepare($sql);
             $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name'],$hidden_id]);
             $user="accepted";
+            header('Location: updateUser.php?user='.$user.'');
         }
         
       
 }
 
-
-header('Location: addUser.php?user='.$user.'');
 $conn->close();
 ?>
