@@ -22,7 +22,7 @@ session_start();
 <body>
     <div class="header">
         <h2>Header</h2>
-        <a href="/var/www/html/CafeteriaSystem/logout.php">Logout</a>
+        <a href="/CafeteriaSystem/logout.php">Logout</a>
     </div>
 
     <div class="row">

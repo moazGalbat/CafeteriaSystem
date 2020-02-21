@@ -5,6 +5,9 @@ session_start();
 if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
 }
+// if ($_SESSION['is_admin']==1){
+//     die ("Access Denied");
+// }
 
 ?>
 

@@ -19,7 +19,7 @@ if ( !isset($_POST['username'], $_POST['password']) ) {
 	die ('Please fill both the username and password field!');
 }
 
-if ($stmt = $con->prepare('SELECT user_id, password,profile_pic FROM `user` WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT user_id, password,profile_pic,`is_admin` FROM `user` WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['username']);
 	$stmt->execute();
@@ -27,7 +27,7 @@ if ($stmt = $con->prepare('SELECT user_id, password,profile_pic FROM `user` WHER
 	$stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($id, $password,$profilePic);
+        $stmt->bind_result($id, $password,$profilePic,$is_admin);
         $stmt->fetch();
         // Account exists, now we verify the password.
         // Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -39,7 +39,14 @@ if ($stmt = $con->prepare('SELECT user_id, password,profile_pic FROM `user` WHER
             $_SESSION['name'] = $_POST['username'];
             $_SESSION['id'] = $id;
             $_SESSION['profile_pic']=$profilePic;
-            header('Location: home.php');
+            $_SESSION['is_admin']=$is_admin;
+
+            if($is_admin){
+                header('Location: adminPages/manualOrder.php');
+            }
+            else{
+                header('Location: home.php');
+            }
         } else {
             echo 'Incorrect password!';
         }
