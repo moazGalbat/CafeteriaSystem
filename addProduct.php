@@ -19,7 +19,7 @@
       <?php session_unset(); } ?>
       <!-- ADD TASK FORM -->
       <div class="card card-body">
-        <form action="save_task.php" method="POST">
+        <form action="save_task.php" method="POST" enctype="multipart/form-data">
 
         <div class="title form-group" >
             <h1> Add Product </h1>

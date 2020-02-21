@@ -1,11 +1,9 @@
 <?php
 include("db.php");
-$title = '';
-$description= '';
 
 
-if  (isset($_GET['product_id'])) {
-  $id = $_GET['product_id'];
+if  (isset($_GET['id'])) {
+  $id = $_GET['id'];
   $query = "SELECT * FROM product WHERE product_id=$id";
   $result = mysqli_query($conn, $query);
   if (mysqli_num_rows($result) == 1) {
@@ -13,6 +11,7 @@ if  (isset($_GET['product_id'])) {
     $product_name = $row['name'];
     $price = $row['price'];
     $pic = $row['pic'];
+    $category = $row['category_id'];
   }
 }
 

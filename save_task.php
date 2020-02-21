@@ -5,6 +5,7 @@ echo "Connected .... ";
 
 // -------------- check for file ---------------
 
+
 $filename = $_FILES['file']['name'];
 $filetype = $_FILES['file']['type'];
 $filetmp_name = $_FILES['file']['tmp_name'];
@@ -14,9 +15,6 @@ $fileExt = strtolower(end($ext));
 
 $err = array();
 $extensions = ["png", "jpg", "md"];
-
-var_dump($_FILES);
-die();
 
 
 // Check File Extensions
@@ -32,7 +30,7 @@ if($filesize > 10000){
 if(empty($err) == true){
     move_uploaded_file($filetmp_name,$filename);
     echo "----------------File Added ----------";
-    var_dump($err);
+    var_dump($filetmp_name);
 }
 
 
@@ -42,14 +40,14 @@ if (isset($_POST['save_task'])) {
   $name = $_POST['name'];
   $price = $_POST['price'];
   $category = $_POST['category'];
-  var_dump($_FILES);
-  die();
-  // $img_path = $_FILES["file"]["tmp_name"];
-  // $file = $_POST['file'];
+  $img_path = $_FILES["file"]["tmp_name"];
+  
 
 
-  $query = "INSERT INTO product(name, price, pic, category_id) VALUES ('$name', '$price, $img_path,$category ')";
+
+  $query = "INSERT INTO product(name, price, pic, category_id) VALUES (' $name ', '$price', '$img_pathll',$category)";
   $result = mysqli_query($conn, $query);
+
   if(!$result) {
     die("Query Failed.");
   }
