@@ -56,7 +56,7 @@ $result = $stmt->fetchAll();
         echo "<td>".$data['username']."</td> <td>".$data['room']."</td> <td><img src=".$data['profile_pic']." width='30px' height='30%' alt='img'></td> <td>".$data['ext']."</td>";
         echo "<form action='updateUser.php' method='POST'>";
         echo "<td><button type='submit' name='data' value='".$data['user_id'].",".$data['username'].",".$data['email'].",".$data['room'].",".$data['ext']."'>Edit</button></form>";
-        echo "<button id='delete' onclick='deleteUser()' value=".$data['user_id'].">Delete</button></td>";
+        echo "<button onclick='deleteUser(".$data['user_id'].")'>Delete</button></td>";
         echo "</tr>";
       }
     ?>
@@ -64,8 +64,7 @@ $result = $stmt->fetchAll();
   </div>
 </div>
 <script>
-  let id = document.getElementById('delete').value;
-  function deleteUser(){
+  function deleteUser(id){
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -75,9 +74,8 @@ var xhttp = new XMLHttpRequest();
   xhttp.open("POST", "allUsers.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("userid="+id);
-
   }
-
+  
 </script>
 </body>
 </html>
