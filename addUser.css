@@ -1,0 +1,127 @@
+@keyframes notify{
+    0%{opacity:0;
+       bottom: 20px;
+       right: 50px;
+    }
+    50%{
+     opacity:1;
+     bottom: 55px;
+     right: 50px;
+    }
+    100%{
+        opacity: 0;
+        bottom: 90px;
+        right: 50px;
+        display: none;
+
+    }
+}
+
+
+body{
+    margin: 0;
+    font-family: Verdana, sans-serif;
+}
+#main-container{
+    width:100vw;
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#card{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 450px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 15px;
+}
+
+#header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 15px 15px 0 0 ;
+    flex-grow: 1.5;
+    font-size: 1rem;
+}
+
+#form-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-top: 1 solid lightgray ;
+    border-bottom: 1 solid lightgray ;
+    flex-grow: 4;
+}
+
+#footer{
+    display: flex;
+    justify-content:right;
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 0 0 15px 15px  ;
+    flex-grow: 2;
+
+}
+
+#save{
+    background-color: #008CBA;;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 8px 28px;
+    text-align: center;
+    display: inline-block;
+    margin: 15px 5px;
+
+}
+
+#reset{
+    background-color: rgb(26, 24, 24);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 8px 28px;
+    text-align: center;
+    display: inline-block;
+    margin: 15px 25px 15px 5px;    
+}
+
+
+ .input{
+     border: 1px solid lightgray;
+     border-radius: 10px;
+     height: 2em;
+     width: 22em;
+     margin: 1px 8px;
+ }
+
+ .input:hover{
+     background-color:whitesmoke;
+ }
+
+
+ #notification{
+     align-self: flex-end;
+     position: absolute;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.158);
+     border-radius: 15px;
+     background-color: cornflowerblue;
+     width: 20%;
+     height: 12%;
+     display: none;
+
+ }
+ 
+ .note{
+     
+     text-align: center;
+     font-weight:bold;
+     font-size: 1.2vw;
+      }
