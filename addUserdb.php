@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                 $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic) Values(?,?,?,?,?,?)";
                 $stmt=$conn->prepare($sql);
-                $stmt->execute([$userName,$password,$email,$room,$exten,"images/".$_FILES['image']['name']]);
+                $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name']]);
                 echo "row created successfully";
                 $user="accepted";
             }
