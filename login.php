@@ -1,7 +1,12 @@
     <?php
     session_start();
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === TRUE) {
-        header("Location: home.php");
+        if($_SESSION['is_admin']!=1){
+         header("Location: home.php");
+        }
+        else{
+         header("Location: adminPages/manualOrder.php");
+        }
     }
     ?>
 
