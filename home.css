@@ -3,18 +3,54 @@
   }
   
   body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
+
   }
 
-  /* Style the header */
-  .header {
+  /* Style the navigation bar */
+  .nav-bar {
+    margin: 0px;
+    display: flex;
+    position: sticky;
+    top: 0;
     background-color: #f1f1f1;
-    padding: 30px;
+    padding: 10px;
     text-align: center;
-    font-size: 35px;
+    font-size: 20px;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  /* Container for flexboxes */
+  .left-nav *{
+    padding: 5px;
+    text-decoration: none;
+  }
+
+  .right-nav{
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .log-out{
+    margin-left: 10px;
+    display: flex;
+  }
+  
+  #logOut{
+    text-decoration: none;
+    margin-left: 15px;
+  }
+  .user-pic{
+    width: 50px;
+    height: 50px;
+  }
+
+  
+  /* Container for flexboxes*/
   .row {
     display: -webkit-flex;
     display: flex;

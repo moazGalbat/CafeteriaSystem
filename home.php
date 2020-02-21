@@ -14,16 +14,30 @@ if (!isset($_SESSION['loggedin'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="home.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <title>Document</title>
+    <title>Home</title>
 </head>
 
 <body>
-    <div class="header">
-        <h2>Header</h2>
-        <a href="logout.php">Logout</a>
+    <!-- TO DO getting all user info  -->
+    <div class="nav-bar">
+        <div class="left-nav">
+            <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+            <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
+        </div>
+        <div class="right-nav">
+                <img class="user-pic" src="images/user.png">
+                <a>username</a>
+            <div class=log-out>
+                <div>|</div>
+                <a id="logOut" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+            </div>
+        </div>
+        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+
     </div>
 
     <div class="row">
