@@ -15,14 +15,21 @@ if  (isset($_GET['id'])) {
   }
 }
 
+
+
 if (isset($_POST['update'])) {
-  $id = $_GET['product_id'];
-  $product_name= $_POST['name'];
+  $name = $_POST['name'];
   $price = $_POST['price'];
-  $price = $_POST['pic'];
+  $category = $_POST['category'];
+  $img_path = $_FILES["file"]["tmp_name"];
 
-
-  $query = "UPDATE product set name = '$product_name', price = '$price', pic = '$pic' WHERE id=$id";
+// var_dump($id);
+// var_dump($name);
+// var_dump($price);
+// var_dump($category);
+// var_dump($img_path);
+// die();
+  $query = "UPDATE 'product' set 'name' = '$name', 'price' = '$price', 'pic' = '$img_path', 'category_id' = '$category', WHERE 'product.product_id'=$id";
   mysqli_query($conn, $query);
   $_SESSION['message'] = 'Task Updated Successfully';
   $_SESSION['message_type'] = 'warning';
@@ -35,21 +42,21 @@ if (isset($_POST['update'])) {
   <div class="row">
     <div class="col-md-4 mx-auto">
       <div class="card card-body">
-      <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST">
+      <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
       <div class="title form-group" >
             <h1> AUpdate Product </h1>
           </div>
 
           <div class="form-group">
-            <input type="text" name="name" class="form-control" placeholder="Product Name" autofocus>
+            <input type="text" name="name" class="form-control" value="<?php echo $row['name']; ?>" placeholder="Product Name" autofocus>
           </div>
 
           <div class="form-group">
-            <input type="number" name="price" class="form-control" placeholder="cost" min="0" autofocus>
+            <input type="number" name="price" class="form-control" value="<?php echo $row['price']; ?>" placeholder="cost" min="0" autofocus>
           </div>
 
           <div class="form-group">
-                <select class="form-control" id="exampleFormControlSelect1" name="category">
+                <select class="form-control" id="exampleFormControlSelect1" name="category" value="<?php echo $row['category_id']; ?>" name="category">
                   <option value="1" disabled selected>1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -60,7 +67,7 @@ if (isset($_POST['update'])) {
 
         <div class="input-group ">
           <div class="custom-file">
-            <input type="file" name="file" class="custom-file-input" aria-describedby="inputGroupFileAddon01">
+            <input type="file" name="file" class="custom-file-input" value="<?php echo $row['pic']; ?>" aria-describedby="inputGroupFileAddon01">
             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
           </div>
         </div>
