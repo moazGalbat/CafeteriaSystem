@@ -5,7 +5,7 @@ session_start();
 // // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
-$DATABASE_PASS = '';
+$DATABASE_PASS = 'root';
 $DATABASE_NAME = 'cafteria';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
@@ -45,7 +45,7 @@ if ($stmt = $con->prepare('SELECT user_id, password,profile_pic,`is_admin` FROM 
                 header('Location: adminPages/manualOrder.php');
             }
             else{
-                header('Location: home.php');
+                header('Location: userPages/home.php');
             }
         } else {
             echo 'Incorrect password!';

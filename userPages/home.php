@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedin'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="home.css" />
+    <link rel="stylesheet" href="../css/home.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <title>Home</title>
@@ -32,11 +32,11 @@ if (!isset($_SESSION['loggedin'])) {
             <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
         </div>
         <div class="right-nav">
-                <img class="user-pic" src="images/user.png">
+                <img class="user-pic" src="../images/user.png">
                 <a>username</a>
             <div class=log-out>
                 <div>|</div>
-                <a id="logOut" href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+                <a id="logOut" href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
             </div>
         </div>
         <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
@@ -70,7 +70,7 @@ if (!isset($_SESSION['loggedin'])) {
         <div class="product-list-last">
 
             <?php
-            include 'config.php';
+            include '../config.php';
             //latest order
             $user_id=$_SESSION['id'];
 
@@ -116,7 +116,7 @@ if (!isset($_SESSION['loggedin'])) {
     </div> -->
 
 
-    <script src="home.js"></script>
+    <script src="../js/home.js"></script>
 </body>
 
 </html>

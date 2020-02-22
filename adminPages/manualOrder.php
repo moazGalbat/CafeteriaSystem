@@ -15,7 +15,7 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="manualOrder.css" />
+    <link rel="stylesheet" href="../css/manualOrder.css" />
 
     <title>Manual Order</title>
 </head>
@@ -113,7 +113,7 @@ session_start();
             echo "<div class='items-list'>";
             while ($ele = $stmt->fetch()) {
                 echo ("<div class='item'>
-                <img class='item-img' data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src=../{$ele['pic']}  />
+                <img class='item-img' data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src={$ele['pic']}  />
                 <p>{$ele['price']} L.E</p>
             </div>");
             }
@@ -140,7 +140,7 @@ session_start();
         <p>Footer</p>
     </div> -->
 
-    <script src="manualOrder.js"></script>
+    <script src="../js/manualOrder.js"></script>
 </body>
 
 </html>

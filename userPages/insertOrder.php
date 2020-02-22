@@ -10,7 +10,7 @@ $user_id=$_SESSION['id'];
 $products = $_POST['quantity'];
 print_r($inputs);
 
-include 'config.php';
+include '../config.php';
 
 ///insert into orders table 
 $sql = "INSERT INTO orders (user_id , status) VALUES($user_id, 'processing')";
