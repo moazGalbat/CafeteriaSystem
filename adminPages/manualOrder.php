@@ -24,14 +24,14 @@ session_start();
     <!-- TO DO getting all user info  -->
     <div class="nav-bar">
         <div class="left-nav">
-            <a href="#">Home</a>
+            <a href="deliverOrders.php">Home</a>
             <span>|</span>
             <!-- <a href="">|</a> -->
             <a href="">Products</a>
             <span>|</span>
-            <a href="">Users</a>
+            <a href="allUsers.php">Users</a>
             <span>|</span>
-            <a href="">Manual Order</a>
+            <a href="manualOrder.php">Manual Order</a>
             <span>|</span>
             <a href="">Checks</a>
         </div>

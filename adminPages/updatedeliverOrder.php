@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../config.php';
 $OrderID="";
 $status="";
 
@@ -19,11 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if($status == "done"){
     $sql= "UPDATE orders SET status=? WHERE order_id=?";
-    $stmt=$conn->prepare($sql);
+    $stmt=$db->prepare($sql);
     $stmt->execute(['done',$OrderID]);
   }else if ($status == "deliver"){
     $sql= "UPDATE orders SET status=? WHERE order_id=?";
-    $stmt=$conn->prepare($sql);
+    $stmt=$db->prepare($sql);
     $stmt->execute(['out for delivery',$OrderID]);
 
   }

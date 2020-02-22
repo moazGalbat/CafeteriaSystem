@@ -10,7 +10,7 @@ $response=$_GET['user'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="addUser.css" rel="stylesheet" type="text/css">
+    <link href="../css/addUser.css" rel="stylesheet" type="text/css">
     <title>cafeteria/addUser</title>
 </head>
 <body onload="dbreaction()">

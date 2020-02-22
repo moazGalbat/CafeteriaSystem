@@ -1,8 +1,8 @@
 <?php
-require 'config.php';
+require '../config.php';
 #select all from db
 $sql="SELECT user_id,username,email,room,profile_pic,ext FROM user";
-$stmt = $conn->prepare($sql);
+$stmt = $db->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(); 
 ?>
@@ -12,7 +12,7 @@ $result = $stmt->fetchAll();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="allUsers.css" rel="stylesheet" type="text/css">
+  <link href="../css/allUsers.css" rel="stylesheet" type="text/css">
   <title>cafeteria/allUsers</title>
 </head>
 <body>

@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require '../config.php';
 $flag=false;
 $userName = $email = $password= $room = $exten = $hidden_id =$user="";
   function test_input($data) {
@@ -10,12 +10,12 @@ $userName = $email = $password= $room = $exten = $hidden_id =$user="";
   }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userName = test_input($_POST[username]);
-    $email = test_input($_POST[email]);
-    $password = test_input($_POST[password]);
+    $userName = test_input($_POST['username']);
+    $email = test_input($_POST['email']);
+    $password = test_input($_POST['password']);
     $hash = password_hash($password,PASSWORD_DEFAULT);
-    $room = test_input($_POST[room]);
-    $exten = test_input($_POST[ext]);
+    $room = test_input($_POST['room']);
+    $exten = test_input($_POST['ext']);
     $hidden_id = test_input($_POST['hidden_id']);
     if(isset($_FILES['image'])){
         $errors= array();      
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($hidden_id==""){
     #select all users
         $sql="SELECT username FROM user";
-        $stmt = $conn->prepare($sql);
+        $stmt = $db->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(); 
         foreach($result as $names) {
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }else {
             
                 $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic) Values(?,?,?,?,?,?)";
-                $stmt=$conn->prepare($sql);
+                $stmt=$db->prepare($sql);
                 $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name']]);
                 echo "row created successfully";
                 $user="accepted";
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }else{
             $sql= "UPDATE user SET username=?,password=?,email=?,room=?,ext=?,profile_pic=? WHERE user_id=?";
-            $stmt=$conn->prepare($sql);
+            $stmt=$db->prepare($sql);
             $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name'],$hidden_id]);
             $user="accepted";
             header('Location: updateUser.php?user='.$user.'');
@@ -77,5 +77,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 }
 
-$conn->close();
+$db=null;
 ?>

@@ -1,12 +1,12 @@
 <?php
-require 'config.php';
+require '../config.php';
 $sql="SELECT order_id,date,username,room,ext FROM orders o,user u WHERE o.user_id = u.user_id and NOT o.status = 'done'";
-$stmt = $conn->prepare($sql);
+$stmt = $db->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(); 
 
 $query="SELECT o.order_id,o.status,p.name,p.price,p.pic,op.quantity FROM orders o join order_product op on o.order_id = op.order_id join product p on p.product_id = op.product_id where NOT o.status = 'done' order by o.order_id";
-$stmt = $conn->prepare($query);
+$stmt = $db->prepare($query);
 $stmt->execute();
 $res = $stmt->fetchAll();
 
@@ -18,7 +18,7 @@ $res = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cafeteria/deliverOrder</title>
-    <link href="deliverOrder.css" rel="stylesheet" type="text/css">
+    <link href="../css/deliverOrder.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div id="main-container">
