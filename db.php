@@ -4,8 +4,8 @@ session_start();
 $conn = mysqli_connect(
   'localhost',
   'root',
-  '',
+  'root',
   'cafteria'
-) or die(mysqli_erro($mysqli));
+) or die(mysqli_error($mysqli));
 
 ?>
