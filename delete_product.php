@@ -11,9 +11,9 @@ if(isset($_GET['id'])) {
     die("Query Failed.");
   }
 
-  $_SESSION['message'] = 'Task Removed Successfully';
+  $_SESSION['message'] = 'Product Removed Successfully';
   $_SESSION['message_type'] = 'danger';
-  header('Location: index.php');
+  header('Location: list_products.php');
 }
 
 ?>

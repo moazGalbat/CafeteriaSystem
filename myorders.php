@@ -2,7 +2,7 @@
 
 <?php include('includes/header.php'); ?>
 <!--  Header -->
-<div class="row"><div class="col-md-3"></div><div class="col-md-6"> <h1>My Orders</h1>  </div></div>
+<div class="row"><div class="col-md-3"></div><div class="col-md-6 bg-primary"> <h1>My Orders</h1>  </div></div>
 <!-- Main Section  -->
 <div class="row">
     

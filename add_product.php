@@ -8,7 +8,7 @@
   <div class="col-md-5">
       <!-- MESSAGES -->
 
-      <?php if (isset($_SESSION['message'])) { ?>
+       <?php if (isset($_SESSION['message'])) { ?>
       <div class="alert alert-<?= $_SESSION['message_type']?> alert-dismissible fade show" role="alert">
         <?= $_SESSION['message']?>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -19,7 +19,7 @@
       <?php session_unset(); } ?>
       <!-- ADD TASK FORM -->
       <div class="card card-body">
-        <form action="save_task.php" method="POST" enctype="multipart/form-data">
+        <form action="save_product.php" method="POST" enctype="multipart/form-data">
 
         <div class="title form-group" >
             <h1> Add Product </h1>

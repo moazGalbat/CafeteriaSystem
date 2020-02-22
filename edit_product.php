@@ -23,17 +23,16 @@ if (isset($_POST['update'])) {
   $category = $_POST['category'];
   $img_path = $_FILES["file"]["tmp_name"];
 
-// var_dump($id);
-// var_dump($name);
-// var_dump($price);
-// var_dump($category);
-// var_dump($img_path);
-// die();
-  $query = "UPDATE 'product' set 'name' = '$name', 'price' = '$price', 'pic' = '$img_path', 'category_id' = '$category', WHERE 'product.product_id'=$id";
-  mysqli_query($conn, $query);
+
+ $query = "UPDATE product SET name = '$name', price = '$price', pic = '$img_path', category_id = $category WHERE product_id=$id";
+
+
+  $result = mysqli_query($conn, $query);
   $_SESSION['message'] = 'Task Updated Successfully';
   $_SESSION['message_type'] = 'warning';
-  header('Location: index.php');
+
+  header('Location: list_products.php');
+
 }
 
 ?>
@@ -42,7 +41,7 @@ if (isset($_POST['update'])) {
   <div class="row">
     <div class="col-md-4 mx-auto">
       <div class="card card-body">
-      <form action="edit.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
+      <form action="edit_product.php?id=<?php echo $_GET['id']; ?>" method="POST" enctype="multipart/form-data">
       <div class="title form-group" >
             <h1> AUpdate Product </h1>
           </div>
@@ -55,9 +54,10 @@ if (isset($_POST['update'])) {
             <input type="number" name="price" class="form-control" value="<?php echo $row['price']; ?>" placeholder="cost" min="0" autofocus>
           </div>
 
+          <!-- "<?php echo $row['category_id']; ?> -->
           <div class="form-group">
-                <select class="form-control" id="exampleFormControlSelect1" name="category" value="<?php echo $row['category_id']; ?>" name="category">
-                  <option value="1" disabled selected>1</option>
+          <select class="form-control" name="category" value="<?php echo $row['category_id']; ?>">
+                  <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                   <option value="4">4</option>
@@ -79,4 +79,6 @@ if (isset($_POST['update'])) {
     </div>
   </div>
 </div>
+
+
 <?php include('includes/footer.php'); ?>

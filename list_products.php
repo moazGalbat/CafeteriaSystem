@@ -3,6 +3,7 @@
 <?php include('includes/header.php'); ?>
 
 <main class="container p-4">
+<div class="row"><div class="col-md-3"></div><div class="col-md-6 "> <h1>Products</h1>  </div></div>
   <div class="row">
     
     <div class="col-md-10">
@@ -12,6 +13,7 @@
             <th>Product</th>
             <th>Price</th>
             <th>Image</th>
+            <th>Category</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -28,10 +30,10 @@
             <td><?php echo $row['pic']; ?></td>
             <td><?php echo $row['category_id']; ?></td>
             <td>
-              <a href="edit.php?id=<?php echo $row['product_id']?>" class="btn btn-secondary">
+              <a href="edit_product.php?id=<?php echo $row['product_id']?>" class="btn btn-secondary">
                 <i class="fas fa-marker"></i>
               </a>
-              <a href="delete_task.php?id=<?php echo $row['product_id']?>" class="btn btn-danger">
+              <a href="delete_product.php?id=<?php echo $row['product_id']?>" class="btn btn-danger">
                 <i class="far fa-trash-alt"></i>
               </a>
             </td>

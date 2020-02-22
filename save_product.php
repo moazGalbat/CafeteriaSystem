@@ -52,9 +52,9 @@ if (isset($_POST['save_task'])) {
     die("Query Failed.");
   }
 
-  $_SESSION['message'] = 'Task Saved Successfully';
+  $_SESSION['message'] = 'Product Added Successfully';
   $_SESSION['message_type'] = 'success';
-  header('Location: index.php');
+  header('Location: add_product.php');
 
 }
 
