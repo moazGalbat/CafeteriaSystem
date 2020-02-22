@@ -1,28 +1,5 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="";
-$deleteId="";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-if (empty($_POST["userid"])) {
-  $deleteId="";
-}else{
-  $deleteId=$_POST['userid'];
-}
-}
-$conn = new PDO("mysql:host=$servername;dbname=cafteria", $username, $password);
-if (mysqli_connect_errno()) {
-    trigger_error(mysqli_connect_error());
-    echo "connection fail".mysqli_connect_error();
-    }else{
-    //echo "Connected successfully";
-  }
-
-#delete from db
-$sql= "DELETE FROM user where user_id=?";
-$stmt=$conn->prepare($sql);
-$stmt->execute([$deleteId]);
-
+require 'config.php';
 #select all from db
 $sql="SELECT user_id,username,email,room,profile_pic,ext FROM user";
 $stmt = $conn->prepare($sql);
@@ -71,7 +48,7 @@ var xhttp = new XMLHttpRequest();
       location.reload(true);
     }
   };
-  xhttp.open("POST", "allUsers.php", true);
+  xhttp.open("POST", "deleteUser.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhttp.send("userid="+id);
   }

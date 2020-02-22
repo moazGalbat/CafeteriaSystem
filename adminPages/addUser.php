@@ -1,5 +1,5 @@
 <?php
-$response="nothing";
+$response="";
 $response=$_GET['user'];
 ?>
 

@@ -1,38 +1,15 @@
 <?php
-$servername="localhost";
-$username="root";
-$password="";
-$updatedOrder="";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (empty($_POST["order"])) {
-    $updatedOrder="";
-  }else{
-    $updatedOrder=$_POST['order'];
-  }
-  }
-$conn = new PDO("mysql:host=$servername;dbname=cafteria", $username, $password);
-if (mysqli_connect_errno()) {
-    trigger_error(mysqli_connect_error());
-    echo "connection fail".mysqli_connect_error();
-    }else{
-    //echo "Connected successfully";
-  }
-
-$sql="SELECT order_id,date,username,room,ext FROM orders o,user u WHERE o.user_id = u.user_id and o.status = 'out for delivery'";
+require 'config.php';
+$sql="SELECT order_id,date,username,room,ext FROM orders o,user u WHERE o.user_id = u.user_id and NOT o.status = 'done'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(); 
 
-$query="SELECT o.order_id,p.name,p.price,p.pic,op.quantity FROM orders o join order_product op on o.order_id = op.order_id join product p on p.product_id = op.product_id where o.status = 'out for delivery' order by o.order_id";
+$query="SELECT o.order_id,o.status,p.name,p.price,p.pic,op.quantity FROM orders o join order_product op on o.order_id = op.order_id join product p on p.product_id = op.product_id where NOT o.status = 'done' order by o.order_id";
 $stmt = $conn->prepare($query);
 $stmt->execute();
 $res = $stmt->fetchAll();
 
-if($updatedOrder !== ""){
-  $sql= "UPDATE orders SET status=? WHERE order_id=?";
-  $stmt=$conn->prepare($sql);
-  $stmt->execute(['done',$updatedOrder]);
-}
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +22,7 @@ if($updatedOrder !== ""){
 </head>
 <body>
 <div id="main-container">
+<div id="head"><p>ORDERS</p></div>
 <div id="table-container">
 <table>
 <tr>
@@ -58,7 +36,9 @@ if($updatedOrder !== ""){
 foreach($result as $data){
     echo "<tr>";
     echo "<td>".$data['date']."</td><td>".$data['username']."</td><td>".$data['room']."</td><td>".$data['ext']."</td>";
-    echo "<td><button onclick=updateOrder(".$data['order_id'].")>Deliver</button></td>";
+    echo "<td><button onclick=updateOrder(".$data['order_id'].",'deliver')>Deliver</button>
+          <button onclick=updateOrder(".$data['order_id'].",'done')>Done</button>
+    </td>";
     echo "</tr>";
     echo "<tr>";
     $total = 0;
@@ -73,7 +53,7 @@ foreach($result as $data){
           $total+=$orderdata['price']*$orderdata['quantity']; 
         }  
     } 
-    echo "<td class='total'> Total price = ".$total."</td>";
+    echo "<td class='total'> <div>Total price = ".$total."</div><div id='".$$orderdata['order_id']."'>Status : ".$orderdata['status']."</div></td>";
     echo "</tr>";   
 
 }
@@ -83,16 +63,21 @@ foreach($result as $data){
 </div>
 
 <script>
-function updateOrder(id){
+function updateOrder(id,status){
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+      // if(status == "deliver"){
+       
+      // }else{
+
+      // }
       location.reload(true);
     }
   };
-  xhttp.open("POST", "deliverOrders.php", true);
+  xhttp.open("POST", "updatedeliverOrder.php", true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhttp.send("order="+id);
+  xhttp.send("order="+id+"&status="+status);
 }
 </script>
 

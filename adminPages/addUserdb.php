@@ -1,20 +1,7 @@
 <?php
+require 'config.php';
 $flag=false;
-$userName = $email = $password= $room = $exten = $hidden_id = "";
-$servername="localhost";
-$username="root";
-$password="";
-$user="";
-
-
-$conn = new PDO("mysql:host=$servername;dbname=cafteria", $username, $password);
-if (mysqli_connect_errno()) {
-    trigger_error(mysqli_connect_error());
-    echo "connection fail".mysqli_connect_error();
-    }else{
-    echo "Connected successfully";
-  }
-
+$userName = $email = $password= $room = $exten = $hidden_id =$user="";
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -23,12 +10,12 @@ if (mysqli_connect_errno()) {
   }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $userName = test_input($_POST['username']);
-    $email = test_input($_POST['email']);
-    $password = test_input($_POST['password']);
+    $userName = test_input($_POST[username]);
+    $email = test_input($_POST[email]);
+    $password = test_input($_POST[password]);
     $hash = password_hash($password,PASSWORD_DEFAULT);
-    $room = test_input($_POST['room']);
-    $exten = test_input($_POST['ext']);
+    $room = test_input($_POST[room]);
+    $exten = test_input($_POST[ext]);
     $hidden_id = test_input($_POST['hidden_id']);
     if(isset($_FILES['image'])){
         $errors= array();      
@@ -90,5 +77,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 }
 
-$conn=null;
+$conn->close();
 ?>
