@@ -19,10 +19,12 @@ for (const item of items) {
         div.setAttribute("class", "list_element");
         div.setAttribute("id", `${name}_element`);
 
-        let span = document.createElement("span");
+        let span = document.createElement("div");
         span.innerText = `${name}`;
+        span.setAttribute("class", "item-name");
         div.appendChild(span);
         let counterDiv = document.createElement("div");
+        counterDiv.setAttribute("class", "item-input");
         let minusBtn = document.createElement("button");
         minusBtn.setAttribute("class", "minus");
         minusBtn.type = "button";
@@ -41,7 +43,7 @@ for (const item of items) {
         counterDiv.appendChild(plusBtn)
         div.appendChild(counterDiv);
 
-        let elementPrice = document.createElement("span");
+        let elementPrice = document.createElement("div");
 
         elementPrice.innerText = `${price}`
         elementPrice.setAttribute("class", "elementPrice");

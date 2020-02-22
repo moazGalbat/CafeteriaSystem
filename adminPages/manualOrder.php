@@ -14,21 +14,46 @@ session_start();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="manualOrder.css" />
 
-    <title>Document</title>
+    <title>Manual Order</title>
 </head>
 
 <body>
-    <div class="header">
-        <h2>Header</h2>
-        <a href="/CafeteriaSystem/logout.php">Logout</a>
+    <!-- TO DO getting all user info  -->
+    <div class="nav-bar">
+        <div class="left-nav">
+            <a href="#">Home</a>
+            <span>|</span>
+            <!-- <a href="">|</a> -->
+            <a href="">Products</a>
+            <span>|</span>
+            <a href="">Users</a>
+            <span>|</span>
+            <a href="">Manual Order</a>
+            <span>|</span>
+            <a href="">Checks</a>
+        </div>
+
+        <div class="right-nav">
+                <img class="user-pic" src="../images/user.png">
+                <a>Admin</a>
+            <div class=log-out>
+                <div>|</div>
+                <a id="logOut" href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+            </div>
+        </div>
+        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+
     </div>
 
-    <div class="row">
-        <div class="column side" style="background-color:#aaa;">
-            <form id="form" >
+    <!-- ********************* -->
+    <div class="main">
+            <form id="form" class="order-data">
                 <div id="list" class="order">
+                    <div>Order</div>
+
                     <!-- <div class="list_element" id="tea_element">
                     <span>tea</span>
                     <div>
@@ -40,33 +65,36 @@ session_start();
                     <button class="deleteBtn">X</button>
                 </div> -->
                 </div>
-                <label id="notes" for="notes">Notes:</label>
-                <textarea name="notes" id="notes" rows="4" cols="50">
-                </textarea>
-                <label for="room">Room</label>
-                <select name="room" id="room">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+                <div class="notes">
+                    <label id="notes" for="notes">Notes:</label>
+                    <textarea name="notes" id="notes" rows="4" cols="50">
+                    </textarea>
+                </div>
+                <div class="room">
+                    <label for="room">Room</label>
+                    <select name="room" id="room">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
                 <hr>
                 <div id="orderFooter" class="orderFooter">
                     <span id=total></span><br>
                     <button type="submit">Confirm</button>
                 </div>
             </form>
-        </div>
 
-        <div class="column middle" style="background-color:#bbb;">
-
+        <div class="product-list-addUser">
 
             <?php
-            include '/var/www/html/CafeteriaSystem/config.php';
+            include '../config.php';
             //select user
             $query = "SELECT user_id,username FROM `user`";
             $stmt = $db->query($query);
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            echo"<div class='selectUser'>             
+            echo"<div class='select-user'>
+            <div class='user-title'>Select User: </div>           
             <select name='user' id='user'>
             ";
             while ($ele = $stmt->fetch()) {
@@ -81,14 +109,15 @@ session_start();
 
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
-            echo "<div class='availableProducts'><span>Available Products</span>";
-
+            echo "<div class='products-list'><div class='produts-list-title'>Available Products</div>";
+            echo "<div class='items-list'>";
             while ($ele = $stmt->fetch()) {
-                echo ("<div>
-                <img class='item' width='200px' data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src={$ele['pic']}  />
-                <p>{$ele['price']} EPG</p>
+                echo ("<div class='item'>
+                <img class='item-img' data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src=../{$ele['pic']}  />
+                <p>{$ele['price']} L.E</p>
             </div>");
             }
+            echo "</div>";
             echo "</div>";
             $db = null;
             ?>
@@ -107,9 +136,9 @@ session_start();
         </div>
     </div>
 
-    <div class="footer">
+    <!-- <div class="footer">
         <p>Footer</p>
-    </div>
+    </div> -->
 
     <script src="manualOrder.js"></script>
 </body>
