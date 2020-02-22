@@ -4,12 +4,17 @@ body{
 
 #main-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
+p{
+    font-size: 2em;
+    font-weight: bolder;
+}
 
 table{
-    width: 75vw;
+    width: 60vw;
     border: 1px solid lightgray;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.055), 0 3px 15px 0 rgba(0, 0, 0, 0.103);
     text-align: center;
@@ -34,8 +39,8 @@ tr{
 
 .total{
     position: absolute;
-    right: 5%;
-    top: 40%;
+    right: 3%;
+    top: 30%;
     font-weight: bold;
     color: #c20303;
 }
@@ -47,6 +52,6 @@ button{
     color: white;
     text-align: center;
     display: inline-block;
-    padding: 6px 25px;
-    font-weight: bold;
+    padding: 5px 0;
+    width: 60px;
 }
