@@ -16,37 +16,14 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/manualOrder.css" />
+    <link rel="stylesheet" href="../css/adminNav.css" />
 
     <title>Manual Order</title>
 </head>
 
 <body>
-    <!-- TO DO getting all user info  -->
-    <div class="nav-bar">
-        <div class="left-nav">
-            <a href="deliverOrders.php">Home</a>
-            <span>|</span>
-            <!-- <a href="">|</a> -->
-            <a href="">Products</a>
-            <span>|</span>
-            <a href="allUsers.php">Users</a>
-            <span>|</span>
-            <a href="manualOrder.php">Manual Order</a>
-            <span>|</span>
-            <a href="">Checks</a>
-        </div>
 
-        <div class="right-nav">
-                <img class="user-pic" src="../images/user.png">
-                <a>Admin</a>
-            <div class=log-out>
-                <div>|</div>
-                <a id="logOut" href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
-            </div>
-        </div>
-        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
-
-    </div>
+    <?php include('adminNav.html') ?>
 
     <!-- ********************* -->
     <div class="main">

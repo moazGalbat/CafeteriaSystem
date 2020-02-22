@@ -2,14 +2,28 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.table-title{
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.table-title button{
+    height: 30px;
+}
+
 #main-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    padding-bottom: 25px;
+    height: 100vh; 
 }
-
+#table-container{
+    /* padding-bottom: 20px; */
+    /* height: 80%; */
+}
 table{
     width: 65vw;
     border: 1px solid lightgray;

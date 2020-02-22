@@ -9,13 +9,18 @@ $response=$_GET['user'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/addUser.css" rel="stylesheet" type="text/css">
-    <title>cafeteria/addUser</title>
+    <link href="../css/adminNav.css" rel="stylesheet" type="text/css">
+
+    <title>Add New User</title>
 </head>
 <body onload="dbreaction()">
+
+    <?php include('adminNav.html') ?>
+    <!-- *************** -->
     <div id="main-container">
         <div id="card">
             <div id="header">
-                <p><strong>ADD USER</strong> </p>
+                <p><strong>Add New User</strong> </p>
             </div>
             <div id="form-container">
                 <table>
