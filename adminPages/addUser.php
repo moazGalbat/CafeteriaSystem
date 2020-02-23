@@ -1,6 +1,13 @@
 <?php
 $response="";
-// $response=$_GET['user'];
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+	    if (empty($_GET["user"])) {
+	      $response="";
+	    }else{
+	      $response=$_GET['user'];
+	    }
+    }
 ?>
 
 <!DOCTYPE html>
