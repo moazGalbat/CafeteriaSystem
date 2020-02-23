@@ -32,8 +32,8 @@ if (!isset($_SESSION['loggedin'])) {
             <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
         </div>
         <div class="right-nav">
-                <img class="user-pic" src="../images/user.png">
-                <a>username</a>
+                <img class="user-pic" src=<?php echo $_SESSION['profile_pic']?>>
+                <a><?php echo $_SESSION['name']?></a>
             <div class=log-out>
                 <div>|</div>
                 <a id="logOut" href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
