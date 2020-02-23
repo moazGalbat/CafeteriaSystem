@@ -1,6 +1,6 @@
 <?php
 require '../config.php';
-$sql="SELECT order_id,date,username,room,ext FROM orders o,user u WHERE o.user_id = u.user_id and NOT o.status = 'done'";
+$sql="SELECT order_id,date,status,username,room,ext FROM orders o,user u WHERE o.user_id = u.user_id and NOT o.status = 'done'";
 $stmt = $db->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(); 
@@ -53,7 +53,7 @@ foreach($result as $data){
           $total+=$orderdata['price']*$orderdata['quantity']; 
         }  
     } 
-    echo "<td class='total'> <div>Total price = ".$total."</div><div id='".$$orderdata['order_id']."'>Status : ".$orderdata['status']."</div></td>";
+    echo "<td class='total'> <div>Total price = ".$total."</div><div>Status : ".$data['status']."</div></td>";
     echo "</tr>";   
 
 }
