@@ -28,7 +28,7 @@ $result = $stmt->fetchAll();
         <button onclick="window.location.href='addUser.php'">Add New User</button>
       </div>
       <table>
-      <tr>
+      <tr class="table-header">
         <th>User Name</th>
         <th>Room</th>
         <th>Image</th>
@@ -40,8 +40,8 @@ $result = $stmt->fetchAll();
           echo "<tr>";
           echo "<td>".$data['username']."</td> <td>".$data['room']."</td> <td><img src=".$data['profile_pic']." width='30px' height='30px' alt='img'></td> <td>".$data['ext']."</td>";
           echo "<form action='updateUser.php' method='POST'>";
-          echo "<td><button type='submit' name='data' value='".$data['user_id'].",".$data['username'].",".$data['email'].",".$data['room'].",".$data['ext']."'>Edit</button></form>";
-          echo "<button onclick='deleteUser(".$data['user_id'].")'>Delete</button></td>";
+          echo "<td><button class='update-btn' type='submit' name='data' value='".$data['user_id'].",".$data['username'].",".$data['email'].",".$data['room'].",".$data['ext']."'>Edit</button></form>";
+          echo "<button class='del-btn' onclick='deleteUser(".$data['user_id'].")'>Delete</button></td>";
           echo "</tr>";
         }
       ?>
