@@ -122,3 +122,20 @@ form.addEventListener("submit", (event) => {
             console.error('Error:', error);
         });
 })
+
+//search
+let searchfield = document.getElementById("search");
+
+searchfield.addEventListener("keyup", (e) => {
+    const searchText = e.target.value;
+    
+    [...document.body.getElementsByClassName("item")].forEach(item => {
+        
+        if (item.childNodes[1].dataset.name.includes(searchText)) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
+    })
+
+})

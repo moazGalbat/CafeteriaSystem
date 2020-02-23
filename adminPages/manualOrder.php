@@ -63,6 +63,7 @@ session_start();
             </form>
 
         <div class="product-list-addUser">
+        <input type="text" name="search" id="search">
 
             <?php
             include '../config.php';
