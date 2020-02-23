@@ -4,7 +4,7 @@ class DbHandler {
     // Define database information
     private $host = 'localhost';
     private $username = 'root';
-    private $password = '123';
+    private $password = 'root';
     private $dbName = 'cafteria';
     // private $conn;
 
@@ -100,7 +100,6 @@ class DbHandler {
 
 }
 
-$test =new DbHandler();
-$test->addUser("islam","123","7","7","7","7",1);
+
 
 ?>
