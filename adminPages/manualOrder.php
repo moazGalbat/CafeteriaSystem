@@ -15,6 +15,7 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="../css/test.css" /> -->
     <link rel="stylesheet" href="../css/manualOrder.css" />
     <link rel="stylesheet" href="../css/adminNav.css" />
 
@@ -55,7 +56,8 @@ session_start();
                         <option value="3">3</option>
                     </select>
                 </div>
-                <hr>
+                <b class="hr"></b>
+
                 <div id="orderFooter" class="orderFooter">
                     <span id=total></span><br>
                     <button type="submit">Confirm</button>
@@ -80,7 +82,7 @@ session_start();
             }
             echo"</select>
             </div> ";
-
+            echo '<b class="hr anim"></b>';
             //show all products
             $query = "SELECT product_id,name,price,pic FROM product";
             $stmt = $db->query($query);

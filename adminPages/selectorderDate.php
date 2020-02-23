@@ -30,23 +30,23 @@ while ($row2=mysqli_fetch_array($result))
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/selectorderDate.css">
+    <link rel="stylesheet" href="../css/adminNav.css">
+
+    <title>Find order</title>
 </head>
 <body>
-<form action="showOrder.php" method="post">
-     <input type="date"  name="from"> from
-     <br>
-     <br>
-     <input type="date"  name="to">for 
-     <br>
-     <br>
-    <select name="username">
-    <option value="username" selected disabled>username</option>
-     <?php  echo $options ;?> 
-    </select>
-    <br>
-    <br>
-    <input type="submit" value="Find">
-    </form>
+    <?php include('adminNav.html') ?>
+    <div class="main">
+            <form class="search-bar" action="showOrder.php" method="post">
+                <input type="date"  name="from"> from
+                <input type="date"  name="to">for 
+                <select name="username">
+                <option value="username" selected disabled>username</option>
+                <?php  echo $options ;?> 
+                </select>
+                <input type="submit" value="Find">
+            </form>
+    </div>
 </body>
 </html>
