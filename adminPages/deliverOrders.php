@@ -53,7 +53,7 @@ foreach($result as $data){
           $total+=$orderdata['price']*$orderdata['quantity']; 
         }  
     } 
-    echo "<td class='total'> <div>Total price = ".$total."</div><div id='".$$orderdata['order_id']."'>Status : ".$data['status']."</div></td>";
+    echo "<td class='total'> <div>Total price = ".$total."</div><div>Status : ".$data['status']."</div></td>";
     echo "</tr>";   
 
 }
