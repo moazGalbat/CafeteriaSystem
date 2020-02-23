@@ -1,6 +1,6 @@
 <?php
 $response="";
-$response=$_GET['user'];
+// $response=$_GET['user'];
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ $response=$_GET['user'];
     <div id="main-container">
         <div id="card">
             <div id="header">
-                <p><strong>Add New User</strong> </p>
+                <p>Add New User</p>
             </div>
             <div id="form-container">
                 <table>
@@ -61,8 +61,8 @@ $response=$_GET['user'];
 
             </div>
             <div id="footer">
-                <input type="submit" form="form" id="save" value="save">
-                <input type="reset" form="form" id="reset">
+                <input type="submit" form="form" id="save" value="Save">
+                <input type="reset" form="form" id="reset" value="Reset">
             </div>
     </div>
     <div id="notification"></div>

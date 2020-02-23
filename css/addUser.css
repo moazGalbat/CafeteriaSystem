@@ -44,12 +44,21 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: whitesmoke;
     border-radius: 15px 15px 0 0 ;
     flex-grow: 1.5;
     font-size: 1rem;
+    background-color: midnightblue;
 }
 
+#header p{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: palegoldenrod;
+    font-size: 1.8rem;
+    font-weight: bold;
+    /* padding: 0; */
+    margin: 15px;
+
+}
 #form-container{
     display: flex;
     justify-content: center;
@@ -62,41 +71,66 @@ body{
 
 #footer{
     display: flex;
-    justify-content:right;
+    justify-content: right;
     align-items: center;
-    background-color: whitesmoke;
-    border-radius: 0 0 15px 15px  ;
+    border-radius: 0 0 15px 15px ;
+    flex-grow: 1.5;
+    font-size: 1rem;
+    background-color: midnightblue;
     flex-grow: 2;
-
 }
 
 #save{
     background-color: #008CBA;;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: palegoldenrod;
+    font-weight: bold;
+    font-size: 1.3rem;
     padding: 8px 28px;
     text-align: center;
     display: inline-block;
     margin: 15px 5px;
-
+    height: 40px;
+    cursor: pointer;
 }
 
 #reset{
     background-color: rgb(26, 24, 24);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: palegoldenrod;
+    font-weight: bold;
+    font-size: 1.3rem;
     padding: 8px 28px;
     text-align: center;
     display: inline-block;
-    margin: 15px 25px 15px 5px;    
+    margin: 15px 5px;
+    height: 40px;
+    cursor: pointer;
+        /* margin: 15px 25px 15px 5px;     */
 }
 
+#reset:hover{
+    color: midnightblue;
+    background-color: lightpink;
+}
 
+#save:hover{
+    color: midnightblue;
+    background-color: lightgreen;
+}
+
+td label{
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: midnightblue;
+}
  .input{
      border: 1px solid lightgray;
-     border-radius: 10px;
+     border-radius: 5px;
+     padding-left: 0.9rem;
+     font-size: 1.1rem;
      height: 2em;
      width: 22em;
      margin: 1px 8px;
