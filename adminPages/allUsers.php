@@ -38,7 +38,7 @@ $result = $stmt->fetchAll();
       <?php
         foreach($result as $data){
           echo "<tr>";
-          echo "<td>".$data['username']."</td> <td>".$data['room']."</td> <td><img src=".$data['profile_pic']." width='30px' height='30%' alt='img'></td> <td>".$data['ext']."</td>";
+          echo "<td>".$data['username']."</td> <td>".$data['room']."</td> <td><img src=".$data['profile_pic']." width='30px' height='30px' alt='img'></td> <td>".$data['ext']."</td>";
           echo "<form action='updateUser.php' method='POST'>";
           echo "<td><button type='submit' name='data' value='".$data['user_id'].",".$data['username'].",".$data['email'].",".$data['room'].",".$data['ext']."'>Edit</button></form>";
           echo "<button onclick='deleteUser(".$data['user_id'].")'>Delete</button></td>";

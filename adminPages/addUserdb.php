@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors[]='File size must be excately 2 MB';
         }
         if(empty($errors)==true){
-            move_uploaded_file($file_tmp,"images/".$file_name);
+            move_uploaded_file($file_tmp,"../images/".$file_name);
         }else{
             print_r($errors);
         }
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
                 $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic) Values(?,?,?,?,?,?)";
                 $stmt=$db->prepare($sql);
-                $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name']]);
+                $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name']]);
                 echo "row created successfully";
                 $user="accepted";
                 header('Location: addUser.php?user='.$user.'');
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }else{
             $sql= "UPDATE user SET username=?,password=?,email=?,room=?,ext=?,profile_pic=? WHERE user_id=?";
             $stmt=$db->prepare($sql);
-            $stmt->execute([$userName,$hash,$email,$room,$exten,"images/".$_FILES['image']['name'],$hidden_id]);
+            $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$hidden_id]);
             $user="accepted";
             header('Location: updateUser.php?user='.$user.'');
         }
