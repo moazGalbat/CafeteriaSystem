@@ -17,48 +17,55 @@ $res = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cafeteria/deliverOrder</title>
+    <title>Check orders</title>
     <link href="../css/deliverOrder.css" rel="stylesheet" type="text/css">
+      <link rel="stylesheet" href="../css/adminNav.css" />
+
 </head>
 <body>
+<?php include('adminNav.html') ?>
+
 <div id="main-container">
 <div id="head"><p>ORDERS</p></div>
 <div id="table-container">
-<table>
-<tr>
-<th>Order Date</th>
-<th>Name</th>
-<th>Room</th>
-<th>Ext.</th>
-<th>Action</th>
-</tr>
-<?php
-foreach($result as $data){
-    echo "<tr>";
-    echo "<td>".$data['date']."</td><td>".$data['username']."</td><td>".$data['room']."</td><td>".$data['ext']."</td>";
-    echo "<td><button onclick=updateOrder(".$data['order_id'].",'deliver')>Deliver</button>
-          <button onclick=updateOrder(".$data['order_id'].",'done')>Done</button>
-    </td>";
-    echo "</tr>";
-    echo "<tr>";
-    $total = 0;
-    foreach($res as $orderdata){
-        if($data['order_id'] == $orderdata['order_id']){
-          echo "<td><div id='small-container'>
-                      <div>".$orderdata['name']."</div>
-                      <div> price : ".$orderdata['price']."</div>
-                      <div> <img src='".$orderdata['pic']."' alt='img' width='40px' height='40px'></div>
-                      <div>".$orderdata['quantity']."</div>
-              </div></td>";
-          $total+=$orderdata['price']*$orderdata['quantity']; 
-        }  
-    } 
-    echo "<td class='total'> <div>Total price = ".$total."</div><div>Status : ".$data['status']."</div></td>";
-    echo "</tr>";   
+    
+    <!-- </table> -->
+    <table>
+      <tr class='table-header'>
+        <th>Order Date</th>
+        <th>Name</th>
+        <th>Room</th>
+        <th>Ext.</th>
+        <th>Action</th>
+      </tr>
 
-}
-?>
-</table>
+    <?php
+    foreach($result as $data){
+      echo "<tr class='order-data'>";
+      echo "<td>".$data['date']."</td><td>".$data['username']."</td><td>".$data['room']."</td><td>".$data['ext']."</td>";
+      echo "<td><button onclick=updateOrder(".$data['order_id'].",'deliver')>Deliver</button>
+      <button onclick=updateOrder(".$data['order_id'].",'done')>Done</button>
+      </td>";
+      echo "</tr>";
+      echo "<tr><td class='row-data' colspan='100%'><div class='order-items'>";
+      $total = 0;
+      foreach($res as $orderdata){
+        if($data['order_id'] == $orderdata['order_id']){
+          echo "<div id='small-container'>
+          <div class='item-img'> <img src='".$orderdata['pic']."' alt='img'></div>
+          <div class='item-name'>".$orderdata['name']."</div>
+          <div class='item-price'> Price : ".$orderdata['price']." L.E"."</div>
+          <div class='item-quantity'>"."Qty : ".$orderdata['quantity']."</div>
+                  </div>";
+              $total+=$orderdata['price']*$orderdata['quantity']; 
+            }  
+        }
+        echo "</div>";
+        echo "<div class='total-info'><div class='label'>Total price = ".$total." L.E"."</div><div class='value'>Status : ".$data['status']."</div></div>";
+        echo "</td></tr>"; 
+    }
+    ?>
+    </table>  
 </div>
 </div>
 

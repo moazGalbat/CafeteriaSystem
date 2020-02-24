@@ -7,32 +7,121 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-p{
-    font-size: 2em;
-    font-weight: bolder;
+    width: 100%;
 }
 
+
+#head{
+    font-size: 1.7rem;
+    margin-bottom: 0px;
+    padding-bottom: 0;
+    font-family:  'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif  
+}
+
+#head p{
+    font-size: 2em;
+    font-weight: bolder;
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
+    color: midnightblue;
+    }
+
 table{
-    width: 60vw;
+    /* width: 60vw; */
     border: 1px solid lightgray;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.055), 0 3px 15px 0 rgba(0, 0, 0, 0.103);
     text-align: center;
-    border-collapse: collapse;   
+    border-collapse: separate;  
 }
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
 
-th{
+
+/* tr:nth-child(even) {
+    background-color: #f2f2f2;
+  } */
+
+.table-header{
+    background-color: midnightblue;
+    color: navajowhite;
+    font-size: 1.4rem;
+    height: 2.5rem;
+}
+
+.order-data{
+    background-color: rgb(23, 78, 100);
+    color: navajowhite;
+    font-weight: bold;
+    font-size: 1.3rem;
+    height: 2.5rem;
+}
+
+td ,th{
+    min-width: 100px;
+    padding: 5px;
+    /* max-width: 100px; */
+
+}
+.order-items{
+    background-color: cadetblue;
+     display: flex;
+     /* flex-direction: column; */
+     justify-content: space-evenly; 
+     /* padding: 10px; */
+     margin: 0;
+   /* flex-wrap: wrap; */
+}
+
+#small-container{
+    padding: 5px;
+    margin: 5px;
+    border-style: groove;
+    /* border-color: crimson; */
+    background-color: wheat;
+}
+.row-data{
+    /* display: flex;
+    flex-direction: column; */
+    padding: 0;
+    margin: 0;
+}
+.total-info{
+    background-color: cadetblue;
+}
+
+.label , .value{
+    text-align: center;
+    padding: 3px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.item-price , .item-name , .item-img , .item-quantity{
+    font-size: 1.1rem;
+}
+
+.item-img img{
+    height: 50px;
+    width: 50px;
+}
+
+
+.items{
+    /* display: flex;
+    flex-basis: 80%;*/
+    /* width: 100%;  */
+}
+/* th{
     height: 30px;
     background-color: cornflowerblue;
+} */
+
+/* tr,th,td{tr{
+    position: relative;
 }
 
-tr,th,td{
     padding: 5px;
     text-align: center;
-}
+} */
+
 tr{
     position: relative;
 }
