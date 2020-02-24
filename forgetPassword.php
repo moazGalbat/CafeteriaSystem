@@ -1,5 +1,5 @@
 <?php
-// include('config.php');
+include('config.php');
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -40,7 +40,7 @@ if (isset($_POST["email"]) && (!empty($_POST["email"]))) {
          date("Y")
       );
       $expDate = date("Y-m-d H:i:s", $expFormat);
-      $key = md5(2418 * 2 + $email);
+      $key = md5((string)(2418 * 2).$email);
       $addKey = substr(md5(uniqid(rand(), 1)), 3, 10);
       $key = $key . $addKey;
       // Insert Temp Table
