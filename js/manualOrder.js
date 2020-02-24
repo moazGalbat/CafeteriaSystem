@@ -1,9 +1,9 @@
-let items = [...document.getElementsByClassName("item")]
+let items = [...document.getElementsByClassName("item-img")]
+let orderList = document.getElementById("list")
 
 for (const item of items) {
 
     item.addEventListener("click", function (e) {
-        let orderList = document.getElementById("list")
         let { name, price, id } = e.target.dataset;
         price = parseInt(price);
 
@@ -116,7 +116,8 @@ form.addEventListener("submit", (event) => {
         body: reqData,
     })
         .then((data) => {
-            alert("Order Added Successfuly")
+            alert("Order Added Successfuly");
+            orderList.innerHTML="";
         })
         .catch((error) => {
             console.error('Error:', error);

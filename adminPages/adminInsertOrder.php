@@ -10,6 +10,7 @@ $user_id=$_POST['user'];
 $products = $_POST['quantity'];
 print_r($inputs);
 
+if(!empty($products)){
 include '../config.php';
 
 // /insert into orders table 
@@ -23,7 +24,7 @@ foreach ($products as $id => $qunatity) {
     $sql = "INSERT INTO order_product (order_id , product_id , quantity) VALUES( $order_id , $id, '$qunatity')";
     $db->exec($sql);
 }
-
+}
 $db = null;
 
 // header("location: manualOrder.php");

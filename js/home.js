@@ -1,4 +1,4 @@
-let items = [...document.getElementsByClassName("item")]
+let items = [...document.getElementsByClassName("item-img")]
 
 // const creatListElement = (name, price) => `<div class="list_element">
 //                     <span>${name}</span>
