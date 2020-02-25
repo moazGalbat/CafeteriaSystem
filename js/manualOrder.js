@@ -115,9 +115,15 @@ form.addEventListener("submit", (event) => {
         },
         body: reqData,
     })
-        .then((data) => {
-            alert("Order Added Successfuly");
-            orderList.innerHTML="<div>Order</div>";
+        .then(res=>res.json())
+        .then((res) => {
+            if(res=="success"){
+                alert("Order Added Successfuly");
+                orderList.innerHTML="<div>Order</div>";
+            }
+            else{
+                alert("Order is empty");
+            }
         })
         .catch((error) => {
             console.error('Error:', error);

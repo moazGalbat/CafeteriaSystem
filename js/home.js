@@ -99,9 +99,9 @@ let searchfield = document.getElementById("search");
 
 searchfield.addEventListener("keyup", (e) => {
     const searchText = e.target.value;
-    
+
     [...document.body.getElementsByClassName("item")].forEach(item => {
-        
+
         if (item.childNodes[1].dataset.name.includes(searchText)) {
             item.style.display = "block";
         } else {
@@ -121,15 +121,22 @@ form.addEventListener("submit", (event) => {
         reqData += `${name}=${value}&`
     }
     fetch('/CafeteriaSystem/userPages/insertOrder.php', {
-        method: 'POST', 
+        method: 'POST',
         headers: {
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
         body: reqData,
     })
-        .then((data) => {
-            console.log('Success:', data);
-            location.reload();
+        .then(res => res.json())
+        .then((res) => {
+            if (res == "success") {
+                location.reload();
+                alert("Order Added Successfuly");
+                orderList.innerHTML = "<div>Order</div>";
+            }
+            else {
+                alert("Order is empty");
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
