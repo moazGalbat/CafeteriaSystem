@@ -42,9 +42,11 @@ $res = $stmt->fetchAll();
     <?php
     foreach($result as $data){
       echo "<tr class='order-data'>";
-      echo "<td>".$data['date']."</td><td>".$data['username']."</td><td>".$data['room']."</td><td>".$data['ext']."</td>";
-      echo "<td><button onclick=updateOrder(".$data['order_id'].",'deliver')>Deliver</button>
-      <button onclick=updateOrder(".$data['order_id'].",'done')>Done</button>
+      echo "<td>".$data['date']."</td><td>".$data['username']."</td><td>".$data['room']."</td><td>".$data['ext']."</td><td>";
+      if($data['status'] != "out for delivery"){
+      echo "<button onclick=updateOrder(".$data['order_id'].",'deliver',this)>Deliver</button>";
+      }
+      echo "<button onclick=updateOrder(".$data['order_id'].",'done',this)>Done</button>
       </td>";
       echo "</tr>";
       echo "<tr><td class='row-data' colspan='100%'><div class='order-items'>";
@@ -61,7 +63,8 @@ $res = $stmt->fetchAll();
             }  
         }
         echo "</div>";
-        echo "<div class='total-info'><div class='label'>Total price = ".$total." L.E"."</div><div class='value'>Status : ".$data['status']."</div></div>";
+        echo "<div class='total-info'><div class='label'>Total price = ".$total." L.E"."</div>
+        <div class='value' id='".$data['order_id']."'>Status : ".$data['status']."</div></div>";
         echo "</td></tr>"; 
     }
     ?>
@@ -70,16 +73,18 @@ $res = $stmt->fetchAll();
 </div>
 
 <script>
-function updateOrder(id,status){
+function updateOrder(id,status,e){
 var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      // if(status == "deliver"){
-       
-      // }else{
-
-      // }
-      location.reload(true);
+      if(status == "deliver"){
+      document.getElementById(id).innerText="Status : out for delivery"; 
+      e.remove();
+      }else{
+        e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
+        let remove = document.getElementById(id);
+        remove.parentNode.parentNode.parentNode.removeChild(remove.parentNode.parentNode);
+      }
     }
   };
   xhttp.open("POST", "updatedeliverOrder.php", true);

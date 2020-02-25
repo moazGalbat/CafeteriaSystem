@@ -41,7 +41,7 @@ $result = $stmt->fetchAll();
           echo "<td>".$data['username']."</td> <td>".$data['room']."</td> <td><img src=".$data['profile_pic']." width='30px' height='30px' alt='img'></td> <td>".$data['ext']."</td>";
           echo "<form action='updateUser.php' method='POST'>";
           echo "<td><button class='update-btn' type='submit' name='data' value='".$data['user_id'].",".$data['username'].",".$data['email'].",".$data['room'].",".$data['ext']."'>Edit</button></form>";
-          echo "<button class='del-btn' onclick='deleteUser(".$data['user_id'].")'>Delete</button></td>";
+          echo "<button class='del-btn' onclick='deleteUser(".$data['user_id'].",this)'>Delete</button></td>";
           echo "</tr>";
         }
       ?>
@@ -49,11 +49,11 @@ $result = $stmt->fetchAll();
     </div>
   </div>
   <script>
-    function deleteUser(id){
+    function deleteUser(id,e){
   var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
-        location.reload(true);
+        e.parentNode.parentNode.parentNode.removeChild(e.parentNode.parentNode);
       }
     };
     xhttp.open("POST", "deleteUser.php", true);

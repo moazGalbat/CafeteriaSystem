@@ -74,13 +74,11 @@ if (!isset($_SESSION['loggedin'])) {
             //latest order
             $user_id=$_SESSION['id'];
 
-            $query="SELECT p.name , o.quantity ,p.pic FROM order_product o,product p 
-            WHERE p.product_id=o.product_id 
-            AND order_id=(SELECT order_id FROM orders WHERE user_id=$user_id ORDER by date DESC limit 1 )";
+            $query="SELECT p.name , o.quantity ,p.pic FROM order_product o,product p WHERE p.product_id=o.product_id AND order_id=(SELECT order_id FROM orders WHERE user_id=$user_id ORDER by date DESC limit 1 )";
             $stmt = $db->query($query);
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
             echo "<div class='latest-order'><div class='latestOrder-title'>Latest Order</div>";
-            while ($ele = $stmt->fetch()) {
+            while ($ele = $stmt->fetchAll()) {
                 echo ("<div class='order-item'>
                 <img class='item-img' src={$ele['pic']}  />
                 <p>{$ele['name']}::quantity={$ele['quantity']}</p>

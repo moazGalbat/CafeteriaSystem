@@ -1,9 +1,26 @@
 <?php
 $allData="";
-$allData = $_POST['data'];
-$data_arr= explode(",",$allData);
+$allData = "";
 $response="";
-$response=$_GET['user'];
+$data_arr=["...","...","...","..",".."];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["data"])) {
+     $allData="";
+    }else{
+        $allData=$_POST["data"];
+        $data_arr= explode(",",$allData);
+    }
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (empty($_GET["user"])) {
+      $response="";
+    }else{
+      $response=$_GET['user'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,19 +28,13 @@ $response=$_GET['user'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/addUser.css" rel="stylesheet" type="text/css">
-    <link href="../css/adminNav.css" rel="stylesheet" type="text/css">
-
     <title>cafeteria/addUser</title>
 </head>
 <body onload="dbreaction()">
-
-<?php include('adminNav.html') ?>
-    <!-- *************** -->
-
     <div id="main-container">
         <div id="card">
             <div id="header">
-                <p >Update User Data</p>
+                <p style="color:red"><strong>Upate USER Data</strong> </p>
             </div>
             <div id="form-container">
                 <table>
@@ -51,6 +62,13 @@ $response=$_GET['user'];
                         <tr>
                             <td><label>Ext.</label></td>
                             <td><input class="input" type="tel" name="ext" value="<?php echo $data_arr[4];?>"  pattern="01[0-9]{9}"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Is_admin</label></td>
+                            <td>
+                                <input type="radio" name="admin" value="1">Admin
+                                <input type="radio" name="admin" value="0">User
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Profile Picture</label></td>
