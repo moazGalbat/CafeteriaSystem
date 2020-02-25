@@ -23,12 +23,12 @@ if(in_array($fileExt, $extensions) === false){
 }
 
 // Check File Size
-if($filesize > 10000){
-    $err[]= "----------Too Much Size -----";
-}
+// if($filesize > 10000){
+//     $err[]= "----------Too Much Size -----";
+// }
 
 if(empty($err) == true){
-    move_uploaded_file($filetmp_name,"/image/".$filename);
+    move_uploaded_file($filetmp_name,"./images/".$filename);
     echo "----------------File Added ----------";
     var_dump($filetmp_name);
 }
@@ -39,14 +39,14 @@ if(empty($err) == true){
 
 if (isset($_POST['save_task'])) {
   $name = $_POST['name'];
-  $price = $_POST['price'];
-  $category = $_POST['category'];
-  $img_path = $_FILES["file"]["tmp_name"];
-  
+  $price = (int)$_POST['price'];
+  $category = (int)$_POST['category'];
+  // $img_path = $_FILES["file"]["tmp_name"];
+  $img_path="/CafeteriaSystem/images/$filename";
 
 
 
-  $query = "INSERT INTO product(name, price, pic, category_id) VALUES (' $name ', '$price', '$img_pathll',$category)";
+  $query = "INSERT INTO product(name, price, pic, category_id) VALUES ('$name', $price, '$img_path',$category)";
   $result = mysqli_query($conn, $query);
 
   if(!$result) {
