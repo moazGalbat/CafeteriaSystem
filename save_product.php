@@ -28,10 +28,11 @@ if($filesize > 10000){
 }
 
 if(empty($err) == true){
-    move_uploaded_file($filetmp_name,$filename);
+    move_uploaded_file($filetmp_name,"/image/".$filename);
     echo "----------------File Added ----------";
     var_dump($filetmp_name);
 }
+
 
 
 
