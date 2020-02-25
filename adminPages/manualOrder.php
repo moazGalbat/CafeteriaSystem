@@ -88,7 +88,6 @@ session_start();
             }
             echo"</select>
             </div> ";
-            echo '<b class="hr anim"></b>';
             //show all products
             $query = "SELECT product_id,name,price,pic FROM product";
             $stmt = $db->query($query);
@@ -101,7 +100,8 @@ session_start();
             while ($ele = $stmt->fetch()) {
                 echo ("<div class='item'>
                 <img class='item-img' data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src={$ele['pic']}  />
-                <p>{$ele['price']} L.E</p>
+                <div>{$ele['name']}</div>
+                <div>{$ele['price']} L.E</div>
             </div>");
             }
             echo "</div>";
