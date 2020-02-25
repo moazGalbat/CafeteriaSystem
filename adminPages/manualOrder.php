@@ -29,9 +29,11 @@ session_start();
     <!-- ********************* -->
     <div class="main">
             <form id="form" class="order-data">
-                <div id="list" class="order">
-                    <div>Order</div>
-
+                <div  class="order">
+                    <p>Manual Order</p>
+                    <hr>
+                    <div class='order-details'>Order Details :</div>
+                    <div id="list"></div>
                     <!-- <div class="list_element" id="tea_element">
                     <span>tea</span>
                     <div>
@@ -43,6 +45,7 @@ session_start();
                     <button class="deleteBtn">X</button>
                 </div> -->
                 </div>
+                <hr>
                 <div class="notes">
                     <label id="notes" for="notes">Notes:</label>
                     <textarea name="notes" id="notes" rows="4" cols="50">
@@ -56,16 +59,19 @@ session_start();
                         <option value="3">3</option>
                     </select>
                 </div>
-                <b class="hr"></b>
-
+                <div class='footer'>
                 <div id="orderFooter" class="orderFooter">
-                    <span id=total></span><br>
-                    <button type="submit">Confirm</button>
+                <hr>
+                    <span id=total>Total: 0 L.E</span><br>
+                    <hr>                    
                 </div>
+                <button class="confirm" type="submit">Confirm</button>
+
+
+                </div>                
             </form>
 
         <div class="product-list-addUser">
-        <input type="text" name="search" id="search">
 
             <?php
             include '../config.php';
@@ -90,6 +96,7 @@ session_start();
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
             echo "<div class='products-list'><div class='produts-list-title'>Available Products</div>";
+            echo "<div class='search-bar'><input type='text' placeholder='find product' name='search' id='search'></div>";
             echo "<div class='items-list'>";
             while ($ele = $stmt->fetch()) {
                 echo ("<div class='item'>
