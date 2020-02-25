@@ -1,37 +1,12 @@
-let items = [...document.getElementsByClassName("item-img")]
+let items = [...document.getElementsByClassName("product")]
 
-// const creatListElement = (name, price) => `<div class="list_element">
-//                     <span>${name}</span>
-//                     <div class="number">
-//                         <button class="minus">-</button>
-//                         <input data-inputname=${name} name="quantity" data-price=${price} type="text" value="1" disabled />
-//                         <button data-name=${name}  class="plus">+</button>
-//                     </div>
-//                     <button class="deletBtn">X</button>
-//                 </div>`
 
 for (const item of items) {
 
     item.addEventListener("click", function (e) {
         let orderList = document.getElementById("list")
-        // let orderfooter=document.getElementById("orderFooter")
         let { name, price, id } = e.target.dataset;
         price = parseInt(price);
-
-        // const element = creatListElement(name,price)
-        // debugger
-        // orderList.innerHTML+=element;
-
-        // [...document.getElementsByClassName('plus')].forEach(el=>{
-        //     el.addEventListener("click",(e)=>{
-        //         const inputElement = document.querySelector(`[data-inputname='${name}']`)
-        //         inputElement.value = Number(inputElement.value)+1
-        //         // let count= parseInt(quantity.value)+1;
-        //         // quantity.value=count;
-        //         // let itemPrice=price*parseInt(quantity.value);
-        //         // elementPrice.innerText=itemPrice;
-        //     })
-        // })
 
         let elementExist = document.getElementById(`${name}_element`);
         let total = document.getElementById("total");
@@ -135,27 +110,28 @@ searchfield.addEventListener("keyup", (e) => {
     })
 
 })
-// const form = document.getElementById("form");
 
-// form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     let reqData = "";
-//     const formData = new FormData(form);
-//     for (const [name, value] of formData.entries()) {
-//         reqData += `${name}=${value}&`
-//     }
-//     fetch('/CafeteriaSystem/insertOrder.php', {
-//         method: 'POST', 
-//         headers: {
-//             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-//         },
-//         body: reqData,
-//     })
-//         .then((data) => {
-//             console.log('Success:', data);
-            // location.reload();
-//         })
-//         .catch((error) => {
-//             console.error('Error:', error);
-//         });
-// })
+const form = document.getElementById("form");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let reqData = "";
+    const formData = new FormData(form);
+    for (const [name, value] of formData.entries()) {
+        reqData += `${name}=${value}&`
+    }
+    fetch('/CafeteriaSystem/userPages/insertOrder.php', {
+        method: 'POST', 
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        },
+        body: reqData,
+    })
+        .then((data) => {
+            console.log('Success:', data);
+            location.reload();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+})

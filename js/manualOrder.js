@@ -117,7 +117,7 @@ form.addEventListener("submit", (event) => {
     })
         .then((data) => {
             alert("Order Added Successfuly");
-            orderList.innerHTML="";
+            orderList.innerHTML="<div>Order</div>";
         })
         .catch((error) => {
             console.error('Error:', error);

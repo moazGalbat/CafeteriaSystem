@@ -29,4 +29,4 @@ foreach ($products as $id => $qunatity) {
 
 $db = null;
 
-header("location: home.php");
+// header("location: home.php");

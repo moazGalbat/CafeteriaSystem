@@ -98,7 +98,7 @@ if (!isset($_SESSION['loggedin'])) {
             echo "<div class='items-list'>";
             while ($ele = $stmt->fetch()) {
                 echo ("<div class=item>
-                <img class='item-img'  data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src={$ele['pic']}  />
+                <img class='item-img product'  data-price={$ele['price']} data-name={$ele['name']} data-id={$ele['product_id']} src={$ele['pic']}  />
                 <div>{$ele['name']} </div>
                 <div>{$ele['price']} L.E</div>
 
