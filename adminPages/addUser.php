@@ -57,6 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                             <td><input class="input" type="tel" name="ext" pattern="01[0-9]{9}"></td>
                         </tr>
                         <tr>
+                            <td><label>Is_admin</label></td>
+                            <td>
+                                <input type="radio" name="admin" value="1">Admin
+                                <input type="radio" name="admin" value="0">User
+                            </td>
+                        </tr>
+                        <tr>
                             <td><label>Profile Picture</label></td>
                             <td><input type="file" name="image" id="img" accept=".png, .jpeg, .jpg"></td>
                         </tr>

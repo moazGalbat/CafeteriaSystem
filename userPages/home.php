@@ -8,6 +8,9 @@ if (!isset($_SESSION['loggedin'])) {
 // if ($_SESSION['is_admin']==1){
 //     die ("Access Denied");
 // }
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 ?>
 
@@ -85,9 +88,7 @@ if (!isset($_SESSION['loggedin'])) {
             //latest order
             $user_id=$_SESSION['id'];
 
-            $query="SELECT p.name , o.quantity ,p.pic FROM order_product o,product p 
-            WHERE p.product_id=o.product_id 
-            AND order_id=(SELECT order_id FROM orders WHERE user_id=$user_id ORDER by date DESC limit 1 )";
+            $query="SELECT p.name , o.quantity ,p.pic FROM order_product o,product p WHERE p.product_id=o.product_id AND order_id=(SELECT order_id FROM orders WHERE user_id=$user_id ORDER by date DESC limit 1 )";
             $stmt = $db->query($query);
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
             echo "<div class='latest-order'>
