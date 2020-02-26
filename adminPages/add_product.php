@@ -1,6 +1,22 @@
+<?php 
+
+  session_start();
+  // If the user is not logged in redirect to the login page...
+  if (!isset($_SESSION['loggedin'])) {
+      header('Location: ../login.php');
+  }
+  if ($_SESSION['is_admin']!=1){
+      die ("Access Denied");
+  }
+?>
+
+
 <?php include("../db.php"); ?>
 
-<?php include('../includes/header.php'); ?>
+<?php include('adminNav.html') ?>
+
+<?php include('../includes/header.php'); ?> 
+<link rel="stylesheet" href="../css/adminNav.css" />
 
 <main class="container p-4">
   <div class="row">

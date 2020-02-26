@@ -20,8 +20,7 @@
 
   </head>
   <body>
-
-    <nav class="navbar navbar-dark bg-dark">
+  <!-- <nav class="navbar navbar-dark bg-dark">
       <div class="container">
       <div class="col-md-4"></div>
       <div class="col-md-6">
@@ -29,4 +28,4 @@
       </div>
         
       </div>
-    </nav>
+    </nav> -->

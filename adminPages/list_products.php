@@ -1,23 +1,44 @@
+
+<?php 
+
+session_start();
+// If the user is not logged in redirect to the login page...
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: ../login.php');
+}
+if ($_SESSION['is_admin']!=1){
+    die ("Access Denied");
+}
+?>
+
+
 <?php include("../db.php"); ?>
 
-<?php include('../includes/header.php'); ?>
+<!-- <'?php include('../includes/header.php'); ?> -->
+<?php include('adminNav.html') ?>
+<link rel="stylesheet" href="../css/adminNav.css" />
+<link rel="stylesheet" href="../css/listProducts.css" />
 
-<main class="container p-4">
-<div class="row"><div class="col-md-3"></div><div class="col-md-6 "> <h1>Products</h1>  </div></div>
-  <div class="row">
+<main  id='main-container' class="container p-4">
+  
+  <!-- ********************* -->
+
+  <div id="table-container">
     
-    <div class="col-md-10">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
+
+    <div class='table-title'>
+        <div>All Products</div>
+        <button onclick="window.location.href='add_product.php'">Add New Product</button>
+    </div>
+
+      <table>
+          <tr class="table-header">
             <th>Product</th>
             <th>Price</th>
             <th>Image</th>
             <th>Category</th>
             <th>Action</th>
           </tr>
-        </thead>
-        <tbody>
 
           <?php
           $query = "SELECT p.* ,c.name as category FROM product p, category c Where p.category_id=c.id";
@@ -40,10 +61,8 @@
             </td>
           </tr>
           <?php } ?>
-        </tbody>
       </table>
-    </div>
   </div>
 </main>
 
-<?php include('../includes/footer.php'); ?>
+<!-- <'?php include('../includes/footer.php'); ?> -->
