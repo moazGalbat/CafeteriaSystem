@@ -45,7 +45,7 @@ for (const item of items) {
 
         let elementPrice = document.createElement("span");
 
-        elementPrice.innerText = `${price}`
+        elementPrice.innerText = `${price} L.E`
         elementPrice.setAttribute("class", "elementPrice");
         div.appendChild(elementPrice);
 
@@ -55,7 +55,7 @@ for (const item of items) {
         deleteBtn.setAttribute("class", "deleteBtn");
         deleteBtn.addEventListener("click", function () {
             orderList.removeChild(div);
-            total.innerText = totalOrderPrice();
+            total.innerText = totalOrderPrice()+" L.E";
         })
         div.appendChild(deleteBtn);
         orderList.appendChild(div);
@@ -65,22 +65,22 @@ for (const item of items) {
             count = count < 1 ? 1 : count;
             quantity.value = count;
             let itemPrice = price * parseInt(quantity.value);
-            elementPrice.innerText = itemPrice;
+            elementPrice.innerText = itemPrice+" L.E";
 
-            total.innerText = "Total: " + totalOrderPrice();
+            total.innerText = "Total: " + totalOrderPrice()+" L.E";
         })
 
         plusBtn.addEventListener("click", () => {
             let count = parseInt(quantity.value) + 1;
             quantity.value = count;
             let itemPrice = price * parseInt(quantity.value);
-            elementPrice.innerText = itemPrice;
+            elementPrice.innerText = itemPrice+" L.E";
 
-            total.innerText = "Total: " + totalOrderPrice();
+            total.innerText = "Total: " + totalOrderPrice()+" L.E";
 
         })
 
-        total.innerText = "Total: " + totalOrderPrice();
+        total.innerText = "Total: " + totalOrderPrice()+" L.E";
     })
 }
 

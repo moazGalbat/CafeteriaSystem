@@ -23,6 +23,8 @@ error_reporting(E_ALL);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/home.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/adminNav.css" />
+    
 
     <title>Home</title>
 </head>
@@ -32,8 +34,10 @@ error_reporting(E_ALL);
     <div class="nav-bar">
         <div class="left-nav">
             <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+            <span>|</span>
             <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
         </div>
+
         <div class="right-nav">
                 <img class="user-pic" src=<?php echo $_SESSION['profile_pic']?>>
                 <a><?php echo $_SESSION['name']?></a>
@@ -48,9 +52,13 @@ error_reporting(E_ALL);
 
     <div class="main">
             <form  class="order-data" id="form" action="insertOrder.php" method="post">
-                <div id="list" class="order">
-                    <div>Order</div>
+                <div  class="order">
+                    <p>My Order</p>
+                    <hr>
+                    <div class='order-details'>Order Details :</div>
+                    <div id="list"></div>
                 </div>
+                <hr>
                 <div class="notes">
                     <label id="notes" for="notes">Notes:</label>
                     <textarea name="notes" id="notes" rows="4" cols="50">
@@ -64,14 +72,17 @@ error_reporting(E_ALL);
                         <option value="1003">1003</option>
                     </select>
                 </div>
-                <hr>
+                <div class='footer'>
                 <div id="orderFooter" class="orderFooter">
-                    <span id=total></span><br>
-                    <button type="submit">Confirm</button>
+                <hr>
+                    <span id=total>Total: 0 L.E</span><br>
+                    <hr>                    
+                </div>
+                <button class="confirm" type="submit">Confirm</button>
+                </div>                
             </form>
-        </div>
-        <div class="product-list-last">
-            <input type="text" name="search" id="search">
+        <div class="product-list-addUser">
+            <!-- <input type="text" name="search" id="search"> -->
             <?php
             include '../config.php';
             //latest order
@@ -80,14 +91,18 @@ error_reporting(E_ALL);
             $query="SELECT p.name , o.quantity ,p.pic FROM order_product o,product p WHERE p.product_id=o.product_id AND order_id=(SELECT order_id FROM orders WHERE user_id=$user_id ORDER by date DESC limit 1 )";
             $stmt = $db->query($query);
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            echo "<div class='latest-order'><div class='latestOrder-title'>Latest Order</div>";
+            echo "<div class='latest-order'>
+            <div class='latestOrder-title'>Latest Order</div>
+            <div class='all-items'>";
+
             while ($ele = $stmt->fetch()) {
                 echo ("<div class='order-item'>
                 <img class='item-img' src={$ele['pic']}  />
-                <p>{$ele['name']}::quantity={$ele['quantity']}</p>
+                <div>{$ele['name']}</div>
+                <div>Qty: {$ele['quantity']}</div>
             </div>");
             } 
-            echo "</div>";
+            echo "</div></div>";
 
             // show all products
             $query = "SELECT product_id,name,price,pic FROM product";
@@ -96,6 +111,7 @@ error_reporting(E_ALL);
             $res = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
             echo "<div class='products-list'><div class='produts-list-title'>Available Products</div>";
+            echo "<div class='search-bar'><input type='text' placeholder='find product' name='search' id='search'></div>";
             echo "<div class='items-list'>";
             while ($ele = $stmt->fetch()) {
                 echo ("<div class=item>
