@@ -10,12 +10,13 @@ for (const item of items) {
 
         let elementExist = document.getElementById(`${name}_element`);
         let total = document.getElementById("total");
-
+        // total.appendChild(hr);
         if (elementExist) {
             return;
         }
 
         let div = document.createElement("div");
+        let hr = document.createElement('hr');
         div.setAttribute("class", "list_element");
         div.setAttribute("id", `${name}_element`);
 
@@ -45,7 +46,7 @@ for (const item of items) {
 
         let elementPrice = document.createElement("div");
 
-        elementPrice.innerText = `${price}`
+        elementPrice.innerText = `${price} L.E`
         elementPrice.setAttribute("class", "elementPrice");
         div.appendChild(elementPrice);
 
@@ -65,22 +66,22 @@ for (const item of items) {
             count = count < 1 ? 1 : count;
             quantity.value = count;
             let itemPrice = price * parseInt(quantity.value);
-            elementPrice.innerText = itemPrice;
+            elementPrice.innerText = itemPrice+" L.E";
 
-            total.innerText = "Total: " + totalOrderPrice();
+            total.innerText = "Total: " + totalOrderPrice() + " L.E";
         })
 
         plusBtn.addEventListener("click", () => {
             let count = parseInt(quantity.value) + 1;
             quantity.value = count;
             let itemPrice = price * parseInt(quantity.value);
-            elementPrice.innerText = itemPrice;
+            elementPrice.innerText = itemPrice+" L.E";
 
-            total.innerText = "Total: " + totalOrderPrice();
+            total.innerText = "Total: " + totalOrderPrice()+ " L.E";
 
         })
 
-        total.innerText = "Total: " + totalOrderPrice();
+        total.innerText = "Total: " + totalOrderPrice()+ " L.E";
     })
 }
 

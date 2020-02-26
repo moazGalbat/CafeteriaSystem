@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $room = test_input($_POST['room']);
     $exten = test_input($_POST['ext']);
     $hidden_id = test_input($_POST['hidden_id']);
+    $is_admin = test_input($_POST['admin']);
     if(isset($_FILES['image'])){
         $errors= array();      
         $file_name = $_FILES['image']['name'];
@@ -58,18 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header('Location: addUser.php?user='.$user.'');
         }else {
             
-                $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic) Values(?,?,?,?,?,?)";
+                $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic,is_admin) Values(?,?,?,?,?,?,?)";
                 $stmt=$db->prepare($sql);
-                $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name']]);
-                echo "row created successfully";
+                $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$is_admin]);
                 $user="accepted";
                 header('Location: addUser.php?user='.$user.'');
             }
 
         }else{
-            $sql= "UPDATE user SET username=?,password=?,email=?,room=?,ext=?,profile_pic=? WHERE user_id=?";
+            $sql= "UPDATE user SET username=?,password=?,email=?,room=?,ext=?,profile_pic=?,is_admin=? WHERE user_id=?";
             $stmt=$db->prepare($sql);
-            $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$hidden_id]);
+            $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$is_admin,$hidden_id]);
             $user="accepted";
             header('Location: updateUser.php?user='.$user.'');
         }

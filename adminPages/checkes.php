@@ -27,55 +27,25 @@ require '../config.php';
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/login.css" />
+    <!-- <link rel="stylesheet" href="css/login.css" /> -->
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="../css/checks.css">
+    <link rel="stylesheet" href="../css/adminNav.css" />
     <title>Users orders</title>
-
-    <style>
-    body {
-        background-color: #faf9f4;
-        font-family: 'Tajawal', sans-serif;
-        padding-top: 20px;
-
-    }
-    .myform{
-        margin: 10px;
-        padding: 10px;  
-    }
-
-    .user {
-
-        margin: 10px;
-        padding: 10px;
-        background-color: #f3f1e4;
-    }
-
-    .order {
-        background: #999;
-        padding: 10px;
-
-        margin: 10px;
-    }
-
-    .item {
-        background: #faf9f4;
-        padding: 10px;
-
-        margin: 10px;
-    }
-
-    .table-head {
-        border: 1px solid #666;
-        margin-bottom:5px;
-    }
-    </style>
 </head>
 
 <body>
-    <div class="container">
+
+<?php include('adminNav.html') ?>
+
+<!-- ********************* -->
+
+
+<div class="container">
+
 
         <?php
 
@@ -103,31 +73,24 @@ require '../config.php';
 $allUsers=getAllUser();
 
 ?>
-
-    <form action="<?php $_PHP_SELF ?>" method="get" class="row shadow-sm myform">
-
-        <div class="form-group form-group-md col-md-6">
-                <label for="" class=" control-label"> From <i class="fa fa-calendar" aria-hidden="true"></i></label>
-                <div class="">
-                    <input type="date" name="from" value="<?=$from?>" class="form-control">
-
-                </div>
+    <div>
+    <form action="<?php $_PHP_SELF ?>" method="get" class="myform">
+        <div class="date-from-to">
+            <div class="date-from">
+                    <label for="" class=" control-label"> From <i class="fa fa-calendar" aria-hidden="true"></i></label>
+                    <div class="">
+                        <input type="date" name="from" value="<?=$from?>" class="form-control">
+                    </div>
             </div>
-
-
-
-            <div class="form-group form-group-md col-md-6">
+            <div class="date-to">
                 <label for="" class=" control-label"> To <i class="fa fa-calendar" aria-hidden="true"></i></label>
                 <div class="">
                     <input type="date" name="to" value="<?=$to?>" class="form-control">
                 </div>
             </div>
-
-
-
-            <div class="form-group form-group-md col-md-6">
-                <label for="" class=" control-label"> users</label>
-                <div class="">
+            <div class="input-container-user">
+            <label for="" class=" control-label"> users</label>
+            <div class="input-user">
                     <select class="form-control" name="user_id" id="">
                         <option value=""></option>
                         <?php 
@@ -147,22 +110,17 @@ $allUsers=getAllUser();
                     </select>
                 </div>
             </div>
-
-
-            <div class="form-group form-group-md col-md-12">
-                <div class="">
+            <div class="find-outer">
                     <input type="submit" value="Find" class="btn btn-primary">
-                </div>
             </div>
 
+        </div>
 
         </form>
-    </div>
+        </div>
 
+    <div class="container2">
 
-
-
-    <div class="container">
         <div class="row">
             <span class="text-left col-md-6 table-head"> Name </span>
             <span class="text-center col-md-6 table-head">Total Amounts</span>
@@ -233,7 +191,9 @@ $allUsers=getAllUser();
         ?>
          </div>
      </div>
-  </body>
+    
+    </div>
+    </body>
 
 </html>
 

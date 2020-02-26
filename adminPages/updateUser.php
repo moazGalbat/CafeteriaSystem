@@ -1,9 +1,26 @@
 <?php
 $allData="";
-$allData = $_POST['data'];
-$data_arr= explode(",",$allData);
+$allData = "";
 $response="";
-$response=$_GET['user'];
+$data_arr=["...","...","...","..",".."];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["data"])) {
+     $allData="";
+    }else{
+        $allData=$_POST["data"];
+        $data_arr= explode(",",$allData);
+    }
+}
+
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    if (empty($_GET["user"])) {
+      $response="";
+    }else{
+      $response=$_GET['user'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +62,13 @@ $response=$_GET['user'];
                         <tr>
                             <td><label>Ext.</label></td>
                             <td><input class="input" type="tel" name="ext" value="<?php echo $data_arr[4];?>"  pattern="01[0-9]{9}"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Is_admin</label></td>
+                            <td>
+                                <input type="radio" name="admin" value="1">Admin
+                                <input type="radio" name="admin" value="0">User
+                            </td>
                         </tr>
                         <tr>
                             <td><label>Profile Picture</label></td>
