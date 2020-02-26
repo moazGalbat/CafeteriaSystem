@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt=$db->prepare($sql);
             $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$is_admin,$hidden_id]);
             $user="accepted";
-            header('Location: updateUser.php?user='.$user.'');
+            header('Location: allUsers.php');
         }
         
       
