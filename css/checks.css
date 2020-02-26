@@ -105,6 +105,9 @@ body {
     margin: 10px;
 }
 
+.item-img img{
+    width: 75px;
+}
 .table-head {
     border: 1px solid #666;
     margin-bottom:5px;
