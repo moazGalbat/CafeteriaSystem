@@ -1,6 +1,6 @@
-<?php include("db.php"); ?>
+<?php include("../db.php"); ?>
 
-<?php include('includes/header.php'); ?>
+<?php include('../includes/header.php'); ?>
 
 <main class="container p-4">
   <div class="row">
@@ -36,11 +36,7 @@
 
           <div class="form-group">
             <select class="form-control" id="exampleFormControlSelect1" name="category">
-              <!-- <option value="1" disabled selected>1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option> -->
+
               <?php
               $query = "SELECT * FROM category";
               $result_tasks = mysqli_query($conn, $query);
@@ -70,4 +66,4 @@
 </main>
 
 
-<?php include('includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>

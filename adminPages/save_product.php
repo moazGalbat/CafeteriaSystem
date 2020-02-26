@@ -1,6 +1,6 @@
 <?php
 
-include('db.php');
+include('../db.php');
 echo "Connected .... ";
 
 // -------------- check for file ---------------
@@ -22,13 +22,9 @@ if(in_array($fileExt, $extensions) === false){
     $err[]= "----------Extension is not Allawoed -----";
 }
 
-// Check File Size
-// if($filesize > 10000){
-//     $err[]= "----------Too Much Size -----";
-// }
 
 if(empty($err) == true){
-    move_uploaded_file($filetmp_name,"./images/".$filename);
+    move_uploaded_file($filetmp_name,"../images/".$filename);
     echo "----------------File Added ----------";
     var_dump($filetmp_name);
 }

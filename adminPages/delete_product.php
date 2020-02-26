@@ -1,6 +1,6 @@
 <?php
 
-include("db.php");
+include("../db.php");
 var_dump($_GET);
 
 if(isset($_GET['id'])) {
