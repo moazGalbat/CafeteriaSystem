@@ -3,6 +3,7 @@
 <?php include('../includes/header.php'); ?>
 
 <?php
+session_start();
 // if ($_SESSION['loggedin']) {
 //   $id= $_SESSION['id'];
 // }else{
@@ -77,13 +78,16 @@ if (isset($_GET['user_id'])) {
 
           <?php
 
-          // $id= $_SESSION['id'];
+          $id= $_SESSION['id'];
+          
           $query = "SELECT date as orderDate, status, SUM(price*quantity)as total, orders.order_id as order_id, order_product.product_id as product_item_id, product.pic as pic_path
               from orders ,order_product ,product 
               where orders.order_id=order_product.order_id AND 
-              product.product_id=order_product.product_id and orders.user_id =2 or orders.user_id =1
+              product.product_id=order_product.product_id and orders.user_id =$id
               GROUP by orders.order_id ";
           $result_tasks = mysqli_query($conn, $query);
+          // var_dump($result_tasks);
+          // die();
 
           // $id= $_SESSION['id'];
 
@@ -111,7 +115,7 @@ if (isset($_GET['user_id'])) {
               </td>
             </tr>
 
-            <tr>
+            <tr></tr>
               <td colspan="4">
                 <div class="collapse" id="toggel-userid<?= $res['order_id'] ?>">
                   <div class="card card-body" id="toggel-orderid<?= $row['order_id'] ?>">
@@ -120,8 +124,7 @@ if (isset($_GET['user_id'])) {
                     <div id="orderid<?= $row['product_id'] ?>" class="item">
                       <div>
 
-                        <img src=" /home/felfela/Documents/1.jpg" alt="Smiley face">
-                        <img src="<? echo $res['pic_path']; ?>" alt="Smiley face">
+                        <img src="<?php echo $row['pic_path']; ?>" alt="" width=50px>
                         <span> </span>
                       </div>
                     </div>
@@ -145,39 +148,6 @@ if (isset($_GET['user_id'])) {
 
 <!-- Shoing Order Details -->
 
-<?php
-
-function getallorders($user_id, $conn)
-{
-  // global $db;
-
-
-  $query = "SELECT SUM(price*quantity)as total,date as orderDate , orders.order_id
-  from orders ,order_product ,product 
-  where orders.order_id=order_product.order_id AND 
-  product.product_id=order_product.product_id and orders.user_id =1
-  GROUP by orders.order_id ";
-  $result_tasks = mysqli_query($conn, $query);
-  return $result_tasks;
-}
-
-?>
-
-
-<?php
-function getOrderItem($order_id, $conn)
-{
-  $query = "SELECT date, name, orders.order_id FROM orders, product, order_product 
-    WHERE
-    orders.order_id = order_product.order_id 
-    AND product.product_id = order_product.product_id
-    AND orders.order_id = 1";
-  $result_tasks = mysqli_query($conn, $query);
-  $rows = mysqli_fetch_assoc($result_tasks);
-  return $rows;
-}
-
-?>
 
 <script>
   function toggle(id) {
