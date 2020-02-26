@@ -37,7 +37,6 @@ $result = $stmt->fetchAll();
       </tr>
       <?php
         foreach($result as $data){
-          var_dump( $data['profile_pic']);
           echo "<tr>";
           echo "<td>".$data['username']."</td> <td>".$data['room']."</td> <td><img src='{$data['profile_pic']}' width='30px' height='30px' alt='img'></td> <td>".$data['ext']."</td>";
           echo "<form action='updateUser.php' method='POST'>";
