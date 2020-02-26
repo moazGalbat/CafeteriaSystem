@@ -89,8 +89,9 @@ your account and change your security password as someone may have guessed it.</
    }
 } else {
 ?>
-   <form method="post" action="" name="reset"><br /><br />
-      <label><strong>Enter Your Email Address:</strong></label><br /><br />
+   <link rel="stylesheet" href="css/forgetPass.css">
+   <form method="post" action="" class='form' name="reset"><br /><br />
+      <label>Enter Your Email Address:</label><br /><br />
       <input type="email" name="email" placeholder="username@email.com" />
       <br /><br />
       <input type="submit" value="Reset Password" />
