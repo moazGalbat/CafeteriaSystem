@@ -85,8 +85,19 @@ if (isset($_GET['user_id'])) {
               where orders.order_id=order_product.order_id AND 
               product.product_id=order_product.product_id and orders.user_id =$id
               GROUP by orders.order_id ";
-          $result_tasks = mysqli_query($conn, $query);
-          // var_dump($result_tasks);
+
+
+          $q2 = "SELECT SUM(price*quantity)as total,date as orderDate , orders.order_id
+          from orders ,order_product ,product 
+          where orders.order_id=order_product.order_id AND 
+          product.product_id=order_product.product_id and orders.user_id = $id
+          GROUP by orders.order_id ";
+
+
+        
+
+          $result_tasks = mysqli_query($conn, $q2);
+          // var_dump($result_tasks);               
           // die();
 
           // $id= $_SESSION['id'];
@@ -96,6 +107,21 @@ if (isset($_GET['user_id'])) {
           while ($row = mysqli_fetch_assoc($result_tasks)) { ?>
             <?php
             $res = $row;
+            $q3 = "SELECT
+        quantity,
+        pic,name,price,
+        orders.order_id
+    FROM
+        orders,
+        product,
+        order_product
+    WHERE
+        orders.order_id = order_product.order_id 
+        AND product.product_id = order_product.product_id
+          AND orders.order_id = {$row['order_id']}";
+         
+
+
             ?>
             <tr>
               <td>
@@ -120,14 +146,21 @@ if (isset($_GET['user_id'])) {
                 <div class="collapse" id="toggel-userid<?= $res['order_id'] ?>">
                   <div class="card card-body" id="toggel-orderid<?= $row['order_id'] ?>">
                     <?php
+                     $result_items = mysqli_query($conn, $q3);
+                     
+                     foreach ($result_items as $itm) {
+                     
                     ?>
                     <div id="orderid<?= $row['product_id'] ?>" class="item">
                       <div>
-
-                        <img src="<?php echo $row['pic_path']; ?>" alt="" width=50px>
-                        <span> </span>
+                        <img src="<?php echo $itm['pic']; ?>" alt="" width=50px>
+                        <li><?php echo $itm['quantity']; ?></li>
+                        
                       </div>
+                      
                     </div>
+
+                    <?php }?>
                     <?php
                     ?>
                   </div>
