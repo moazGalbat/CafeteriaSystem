@@ -92,7 +92,7 @@ if (isset($_GET['user_id'])) {
               GROUP by orders.order_id ";
 
 
-          $q2 = "SELECT SUM(price*quantity)as total,date as orderDate , orders.order_id
+          $q2 = "SELECT SUM(price*quantity)as total, status, date as orderDate , orders.order_id
           from orders ,order_product ,product 
           where orders.order_id=order_product.order_id AND 
           product.product_id=order_product.product_id and orders.user_id = $id
@@ -137,7 +137,7 @@ if (isset($_GET['user_id'])) {
               <td><?php echo $row['total']; ?></td>
               <td>
 
-                <a href="delete_product.php?id=<?php echo $row['product_id'] ?>" class="btn btn-danger <?php if ($row['status'] != 'processing') {
+                <a href="delete_order.php?id=<?php echo $row['order_id'] ?>" class="btn btn-danger <?php if ($row['status'] != 'processing') {
                                                                                                         echo 'd-none';
                                                                                                       } ?>">
                   <i class="far fa-trash-alt"></i>
