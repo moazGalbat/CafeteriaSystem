@@ -1,4 +1,6 @@
+
 <?php 
+include('../db.php');
 
   session_start();
   // If the user is not logged in redirect to the login page...
@@ -13,8 +15,6 @@
 
 <?php
 
-include('../db.php');
-echo "Connected .... ";
 
 // -------------- check for file ---------------
 
@@ -62,8 +62,8 @@ if (isset($_POST['save_task'])) {
     die("Query Failed.");
   }
 
-  $_SESSION['message'] = 'Product Added Successfully';
-  $_SESSION['message_type'] = 'success';
+  // $_SESSION['message'] = 'Product Added Successfully';
+  // $_SESSION['message_type'] = 'success';
   header('Location: add_product.php');
 
 }
