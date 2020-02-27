@@ -35,7 +35,7 @@ error_reporting(E_ALL);
         <div class="left-nav">
             <a href="#"><i class="fa fa-fw fa-home"></i> Home</a>
             <span>|</span>
-            <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
+            <a href="myorders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
         </div>
 
         <div class="right-nav">
