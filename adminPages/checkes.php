@@ -155,7 +155,7 @@ $allUsers=getAllUser();
                     <span class="text-left col-md-6 table-head"> Order Date </span>
                     <span class="text-center col-md-6 table-head"> Amount</span>
                     <?php 
-              $orders=getUserOrders($user['user_id']);
+             $orders=getUserOrders($user['user_id'],$from ,$to);
               foreach ($orders as  $order) {
                 
               ?>
@@ -254,14 +254,28 @@ function getUsers($from=NULL , $to=NULL,$user_id=NULL)
 }
 
 
-function getUserOrders($user_id)
+function getUserOrders($user_id,$from=NULL , $to=NULL)
 {
     global $db;
+    $andWhere='';
+    if($to && $from)
+    {
+        $andWhere .= " AND orders.date >= '" . $from . "' AND orders.date <= '" . $to . "'";
+    }
+     else if($from)
+     {
+        $andWhere .= " AND orders.date >= '" . $from . "'";
+        
+     }
+     else if($to)
+     {
+        $andWhere .=  " AND orders.date <= '" . $to . "'";  
+     }
   
     $stm=$db->prepare("SELECT SUM(price*quantity)as total,date as orderDate , orders.order_id
     from orders ,order_product ,product 
     where orders.order_id=order_product.order_id AND 
-    product.product_id=order_product.product_id and orders.user_id = $user_id
+    product.product_id=order_product.product_id and orders.user_id = $user_id".$andWhere."
     GROUP by orders.order_id ");
 
 
@@ -269,6 +283,7 @@ function getUserOrders($user_id)
     $rows=$stm->fetchAll();
     return $rows; 
 }
+
 
 function getOrderItem($order_id)
 {
