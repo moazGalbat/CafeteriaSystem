@@ -24,7 +24,7 @@
     <div class="col-md-5">
       <!-- MESSAGES -->
 
-      <?php if (isset($_SESSION['message'])) { ?>
+      <?php if ($_SESSION['message']) { ?>
         <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
           <?= $_SESSION['message'] ?>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -32,7 +32,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-      <?php session_unset();
+      <?php $_SESSION['message']="";
       } ?>
       <!-- ADD TASK FORM -->
       <div class="card card-body">

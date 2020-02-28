@@ -9,11 +9,12 @@
   
 <?php
 session_start();
-// if ($_SESSION['loggedin']) {
-//   $id= $_SESSION['id'];
-// }else{
-//  header('Location: /404.php');
-// }
+if (!isset($_SESSION['loggedin'])) {
+  header('Location: ../login.php');
+}
+if ($_SESSION['is_admin']==1){
+  die ("Access Denied");
+}
 ?>
 
 <?php
