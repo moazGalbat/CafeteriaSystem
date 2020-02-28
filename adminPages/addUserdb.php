@@ -1,7 +1,8 @@
 <?php
 require '../config.php';
 $flag=false;
-$userName = $email = $password= $room = $exten = $hidden_id =$user="";
+$updateFlag=false;
+$userName = $email = $password= $room = $exten = $hidden_id =$user=$is_admin="";
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -17,7 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $room = test_input($_POST['room']);
     $exten = test_input($_POST['ext']);
     $hidden_id = test_input($_POST['hidden_id']);
-    $is_admin = test_input($_POST['admin']);
+    if (empty($_POST['admin'])) {
+        $is_admin='0';
+       }else{
+        $is_admin = test_input($_POST['admin']);
+       }
+
     if(isset($_FILES['image'])){
         $errors= array();      
         $file_name = $_FILES['image']['name'];
@@ -39,43 +45,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             print_r($errors);
         }
     }
+    #select users from db
+    $sql="SELECT user_id,username FROM user";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(); 
 
+    #insert into db
     if ($hidden_id==""){
-    #select all users
-        $sql="SELECT username FROM user";
-        $stmt = $db->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(); 
         foreach($result as $names) {
             if($names['username'] == $userName){
             $flag=true;
             break;
             }
-        }
-                     
+        }  
         if($flag==true){       
-                echo "This user ALREADY EXISTS";
                 $user="notAccepted";
                 header('Location: addUser.php?user='.$user.'');
         }else {
-            
                 $sql= "INSERT INTO user (username,password,email,room,ext,profile_pic,is_admin) Values(?,?,?,?,?,?,?)";
                 $stmt=$db->prepare($sql);
                 $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$is_admin]);
                 $user="accepted";
                 header('Location: addUser.php?user='.$user.'');
             }
-
+#update user data
         }else{
-            $sql= "UPDATE user SET username=?,password=?,email=?,room=?,ext=?,profile_pic=?,is_admin=? WHERE user_id=?";
-            $stmt=$db->prepare($sql);
-            $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$is_admin,$hidden_id]);
-            $user="accepted";
-            header('Location: allUsers.php');
-        }
-        
-      
+            foreach($result as $names) {
+                if($names['username'] == $userName){
+                    if($names['user_id'] == $hidden_id){
+                        continue;
+                    }else{
+                        $updateFlag=true;
+                        break;
+                    }
+                  }
+            }
+            if($updateFlag == false){
+                $sql= "UPDATE user SET username=?,password=?,email=?,room=?,ext=?,profile_pic=?,is_admin=? WHERE user_id=?";
+                $stmt=$db->prepare($sql);
+                $stmt->execute([$userName,$hash,$email,$room,$exten,"/CafeteriaSystem/images/".$_FILES['image']['name'],$is_admin,$hidden_id]);
+                $user="accepted";
+                header('Location: allUsers.php');
+            }    
 }
 
+}
 $db=null;
+
 ?>
