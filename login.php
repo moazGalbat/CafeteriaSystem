@@ -26,7 +26,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === TRUE) {
 <body>
     <div class="container">
         <div class="login">
-            <h3>Login</h3>
+            <div class='login-title'>Welcome to OS Cafe</div>
             <form action="authenticate.php" method="POST">
                 <div class="form-group">
                     <input type="text" name="username" placeholder="username *" value="" required/>

@@ -1,3 +1,17 @@
+body{
+    background-image: url(../images/back2.jpg);
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */}
+
+
+.login-title{
+    font-weight: bold;
+    font-size: 1.7rem;
+    color: #0062cc;
+    margin-bottom: 1rem;
+    text-align: center;
+}
 .container{
     display: flex;
     flex-direction: row;
@@ -8,10 +22,6 @@
 .login{
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
-}
-.login h3{
-    text-align: center;
-    color: #333;
 }
 .btnSubmit
 {
