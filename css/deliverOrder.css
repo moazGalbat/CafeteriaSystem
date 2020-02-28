@@ -1,5 +1,5 @@
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
 }
 
 #main-container{
@@ -19,19 +19,18 @@ body{
 }
 
 #head p{
+    color: midnightblue;
     font-size: 2em;
-    font-weight: bolder;
+    font-weight: bold;
     margin-top: 1rem;
     margin-bottom: 1.2rem;
-    color: midnightblue;
     }
 
 table{
-    /* width: 60vw; */
+    width: 60vw; 
     border: 1px solid lightgray;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.055), 0 3px 15px 0 rgba(0, 0, 0, 0.103);
     text-align: center;
-    border-collapse: separate;  
 }
 
 
@@ -40,17 +39,17 @@ table{
   } */
 
 .table-header{
-    background-color: midnightblue;
-    color: navajowhite;
-    font-size: 1.4rem;
+    background-color:midnightblue;
+    color: white;
+    font-size: 1.2rem;
     height: 2.5rem;
 }
 
+th{    background-color:midnightblue;
+}
 .order-data{
-    background-color: rgb(23, 78, 100);
-    color: navajowhite;
-    font-weight: bold;
-    font-size: 1.3rem;
+
+    font-size: 1rem;
     height: 2.5rem;
 }
 
@@ -60,8 +59,11 @@ td ,th{
     /* max-width: 100px; */
 
 }
+
+tr:nth-child(even){
+    background-color: whitesmoke;
+}
 .order-items{
-    background-color: rgb(243, 251, 252);
      display: flex;
      /* flex-direction: column; */
      justify-content: space-evenly; 
@@ -73,9 +75,7 @@ td ,th{
 #small-container{
     padding: 5px;
     margin: 5px;
-    border-style: groove;
-    /* border-color: crimson; */
-    background-color: wheat;
+  
 }
 .row-data{
     /* display: flex;
@@ -84,44 +84,22 @@ td ,th{
     margin: 0;
 }
 .total-info{
-    background-color: rgb(23, 78, 100);
-    color: wheat;
+    color: midnightblue;
+    font-weight: bolder;
+ 
 }
 
 .label , .value{
     text-align: center;
     padding: 3px;
-    font-size: 1.2rem;
-    font-weight: bold;
 }
 
-.item-price , .item-name , .item-img , .item-quantity{
-    font-size: 1.1rem;
-}
+
 
 .item-img img{
     height: 50px;
     width: 50px;
 }
-
-
-.items{
-    /* display: flex;
-    flex-basis: 80%;*/
-    /* width: 100%;  */
-}
-/* th{
-    height: 30px;
-    background-color: cornflowerblue;
-} */
-
-/* tr,th,td{tr{
-    position: relative;
-}
-
-    padding: 5px;
-    text-align: center;
-} */
 
 tr{
     position: relative;
@@ -131,7 +109,6 @@ tr{
     position: absolute;
     right: 3%;
     top: 30%;
-    font-weight: bold;
     color: #c20303;
 }
 
@@ -144,4 +121,5 @@ button{
     display: inline-block;
     padding: 5px 0;
     width: 60px;
+    margin: 5px;
 }

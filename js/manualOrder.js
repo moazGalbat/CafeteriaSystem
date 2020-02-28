@@ -56,7 +56,7 @@ for (const item of items) {
         deleteBtn.setAttribute("class", "deleteBtn");
         deleteBtn.addEventListener("click", function () {
             orderList.removeChild(div);
-            total.innerText = totalOrderPrice();
+            total.innerText = totalOrderPrice() + " L.E";
         })
         div.appendChild(deleteBtn);
         orderList.appendChild(div);

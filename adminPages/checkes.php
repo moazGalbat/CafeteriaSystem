@@ -135,8 +135,8 @@ $allUsers=getAllUser();
     <div class="container2">
 
         <div class="row">
-            <span class="text-left col-md-6 table-head"> Name </span>
-            <span class="text-center col-md-6 table-head">Total Amounts</span>
+            <span id='table-head' class="col-md-6 table-head"> Client </span>
+            <span id='table-head' class="text-center col-md-6 table-head">Total Amount</span>
             <?php  
         $users= getUsers($from ,$to ,$user_id );
         foreach ($users as  $user) {
@@ -145,15 +145,15 @@ $allUsers=getAllUser();
             <div id="userid<?=$user['user_id'] ?>" class="col-md-12 user">
 
                 <div class="row">
-                    <span class="text-left col-md-6">
+                    <span class="text-left col-md-6 item-tab">
                         <i class='fa fa-plus' onclick="toggle('toggel-userid'+<?=$user['user_id'] ?>)"></i>
                         <?=$user['username'] ?></span>
-                    <span class="text-center col-md-6"> <?=$user['total'] ?></span>
+                    <span class="text-center col-md-6"> <?=$user['total']."  L.E" ?></span>
 
                 </div>
-                <div id="toggel-userid<?=$user['user_id'] ?>" style="display:none" class="row order">
-                    <span class="text-left col-md-6 table-head"> Order Date </span>
-                    <span class="text-center col-md-6 table-head"> Amount</span>
+                <div id="toggel-userid<?=$user['user_id'] ?>" style="display:none" class="row order user-list">
+                    <span id='table-head' class=" col-md-6 table-head"> Order Date </span>
+                    <span id='table-head' class="text-center col-md-6 table-head"> Amount</span>
                     <?php 
              $orders=getUserOrders($user['user_id'],$from ,$to);
               foreach ($orders as  $order) {
@@ -167,19 +167,18 @@ $allUsers=getAllUser();
                                 <i class='fa fa-plus' onclick="toggle('toggel-orderid'+<?=$order['order_id'] ?>)"></i>
                                 <?=$order['orderDate'] ?>
                             </span>
-                            <span class="text-center col-md-6"> <?=$order['total'] ?></span>
+                            <span class="text-center col-md-6"> <?=$order['total']."  L.E" ?></span>
 
                         </div>
 
-                        <div id="toggel-orderid<?=$order['order_id'] ?>" style="display:none">
+                        <div class='order-details' id="toggel-orderid<?=$order['order_id'] ?>" style="display:none">
 
                             <?php 
               $items=getOrderItem($order['order_id']);
               foreach ($items as  $item) {
                 
               ?>
-
-                            <div id="orderid<?=$item['product_id'] ?>" class="item">
+                            <div id="orderid<?=$item['product_id'] ?>" class="item-card">
                                 <div>
                                     <!-- <span> <?=$item['pic'] ?></span> -->
                                     <!-- <div><img src=".$item['pic']." alt='img'></div>
@@ -187,8 +186,8 @@ $allUsers=getAllUser();
                                     <!-- <div class='item-img'><img src='".$item["pic"]."' alt='img'></div> -->
                                     <div class='item-img'><img src="<?=$item['pic'] ?>" alt='img'></div>
                                     <div class='item-name'><?=$item['name'] ?></div>
-                                    <div class='item-price'> price:<?=$item['price'] ?>L.E</div>
-                                    <div class='item-quantity'>Qty:<?=$item['quantity'] ?></div>
+                                    <div class='item-price'> <?="price: ".$item['price']."  L.E" ?></div>
+                                    <div class='item-quantity'><?="Qty: ".$item['quantity'] ?></div>
                                 </div>
                             </div>
                         <?php } ?>
