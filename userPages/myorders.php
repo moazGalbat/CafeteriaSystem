@@ -5,7 +5,8 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="myorders.css">
+  
 <?php
 session_start();
 // if ($_SESSION['loggedin']) {
@@ -42,6 +43,28 @@ if (isset($_GET['user_id'])) {
 
 
 ?>
+
+
+<div class="nav-bar">
+        <div class="left-nav">
+            <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
+            <span>|</span>
+            <a href="myorders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
+        </div>
+
+        <div class="right-nav">
+                <img class="user-pic" src=<?php echo $_SESSION['profile_pic']?>>
+                <a><?php echo $_SESSION['name']?></a>
+            <div class=log-out>
+                <div>|</div>
+                <a id="logOut" href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+            </div>
+        </div>
+        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+
+    </div>
+    <link rel="stylesheet" href="../css/adminNav.css" />
+
 
 <div class="container">
 
