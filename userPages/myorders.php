@@ -5,15 +5,20 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+        <link rel="stylesheet" href="../css/myorders.css">
+  
 <?php
-session_start();
-if (!isset($_SESSION['loggedin'])) {
-  header('Location: ../login.php');
-}
-if ($_SESSION['is_admin']==1){
-  die ("Access Denied");
-}
+// // session_start();
+// if (session_status() == PHP_SESSION_NONE) {
+//   session_start();
+// }
+
+// if (!isset($_SESSION['loggedin'])) {
+//   header('Location: ../login.php');
+// }
+// if ($_SESSION['is_admin']==1){
+//   die ("Access Denied");
+// }
 ?>
 
 <?php
@@ -42,25 +47,80 @@ if (isset($_GET['user_id'])) {
 }
 
 
+
+$andWhere='';
+if($to && $from)
+{
+    $andWhere .= " AND orders.date >= '" . $from . "' AND orders.date <= '" . $to . "'";
+}
+ else if($from)
+ {
+    $andWhere .= " AND orders.date >= '" . $from . "'";
+    
+ }
+ else if($to)
+ {
+    $andWhere .=  " AND orders.date <= '" . $to . "'";  
+ }
+
+
+
 ?>
 
-<div class="container">
+
+<div class="nav-bar">
+        <div class="left-nav">
+            <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
+            <span>|</span>
+            <a href="myorders.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Orders</a>
+        </div>
+
+        <div class="right-nav">
+                <img class="user-pic" src=<?php echo $_SESSION['profile_pic']?>>
+                <a><?php echo $_SESSION['name']?></a>
+            <div class=log-out>
+                <div>|</div>
+                <a id="logOut" href="../logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+            </div>
+        </div>
+        <!-- <i class="fa fa-bars" aria-hidden="true"></i> -->
+
+    </div>
+    <link rel="stylesheet" href="../css/adminNav.css" />
+
+
+<!-- <div class="container"> -->
 
   <!-- Date Start -->
-  <br>
-  <div class="row">
-    <div class="col-md-4"></div>
+  <div>
+  <!-- <div class="row"> -->
+    <!-- <div class="col-md-4"></div>
     <br>
-    <div class="col-md-4">
-      <form action="<?php $_PHP_SELF ?>" method="GET">
-        <input type="date" name="from" value="<?= $from ?>" class="form-control"> from
-
+    <div class="col-md-4"> -->
+      <form action="<?php $_PHP_SELF  ?>" method="GET" class="myform">
+        <!-- <input type="date" name="from" value="<?= $from ?>" class="form-control"> from
         <input type="date" name="to" value="<?= $to ?>" class="form-control">for <br>
-
-        <input type="submit" value="Find" class="btn btn-dark"><br>
-
+        <input type="submit" value="Find" class="btn btn-dark"><br> -->
+        <div class="date-from-to">
+          <div class="date-from">
+                      <label for="" class=" control-label"> From <i class="fa fa-calendar" aria-hidden="true"></i></label>
+                      <div class="">
+                          <input type="date" name="from" value="<?=$from?>" class="form-control">
+                      </div>
+          </div>
+          <div class="date-to">
+                  <label for="" class=" control-label"> To <i class="fa fa-calendar" aria-hidden="true"></i></label>
+                  <div class="">
+                      <input type="date" name="to" value="<?=$to?>" class="form-control">
+                  </div>
+          </div>
+          <div class="find-outer">
+                      <input type="submit" value="Find" class="btn btn-primary">
+          </div>
+        </div>
       </form>
-    </div>
+      <??>
+    <!-- </div> -->
   </div>
   <!-- Date End -->
 
@@ -70,8 +130,8 @@ if (isset($_GET['user_id'])) {
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <table class="table table-bordered">
-        <thead>
+      <table class="table table-hover">
+        <thead class="thead-dark">
           <tr>
             <th>Order Date</th>
             <th>Status</th>
@@ -83,19 +143,19 @@ if (isset($_GET['user_id'])) {
 
           <?php
 
-          $id= $_SESSION['id'];
+          // $id= $_SESSION['id'];
           
-          $query = "SELECT date as orderDate, status, SUM(price*quantity)as total, orders.order_id as order_id, order_product.product_id as product_item_id, product.pic as pic_path
-              from orders ,order_product ,product 
-              where orders.order_id=order_product.order_id AND 
-              product.product_id=order_product.product_id and orders.user_id =$id
-              GROUP by orders.order_id ";
+          // $query = "SELECT date as orderDate, status, SUM(price*quantity)as total, orders.order_id as order_id, order_product.product_id as product_item_id, product.pic as pic_path
+          //     from orders ,order_product ,product 
+          //     where orders.order_id=order_product.order_id AND 
+          //     product.product_id=order_product.product_id and orders.user_id =1
+          //     GROUP by orders.order_id ";
 
 
           $q2 = "SELECT SUM(price*quantity)as total, status, date as orderDate , orders.order_id
           from orders ,order_product ,product 
           where orders.order_id=order_product.order_id AND 
-          product.product_id=order_product.product_id and orders.user_id = $id
+          product.product_id=order_product.product_id and orders.user_id = 1".$andWhere."
           GROUP by orders.order_id ";
 
 
@@ -148,26 +208,31 @@ if (isset($_GET['user_id'])) {
 
             <tr></tr>
               <td colspan="4">
-                <div class="collapse" id="toggel-userid<?= $res['order_id'] ?>">
-                  <div class="card card-body" id="toggel-orderid<?= $row['order_id'] ?>">
+                <div class="collapse " id="toggel-userid<?= $res['order_id'] ?>">
+                  <!-- <div class="card card-body" id="toggel-orderid<?= $row['order_id'] ?>"> -->
+                    <div class='order-details'>
                     <?php
                      $result_items = mysqli_query($conn, $q3);
                      
                      foreach ($result_items as $itm) {
-                     
-                    ?>
-                    <div id="orderid<?= $row['product_id'] ?>" class="item">
+                       
+                       ?>
+                      <div class="item-card">
+                       <div class='item-img'><img src="<?=$itm['pic'] ?>" alt='img'></div>
+                       <div class='item-name'><?=$itm['name'] ?></div>
+                       <div class='item-price'> <?="price: ".$itm['price']."  L.E" ?></div>
+                       <div class='item-quantity'><?="Qty: ".$itm['quantity'] ?></div>
+                     </div>
+                    <!-- <div id="orderid<?= $row['product_id'] ?>" class="item">
                       <div>
                         <img src="<?php echo $itm['pic']; ?>" alt="" width=50px>
                         <li><?php echo $itm['quantity']; ?></li>
                         
                       </div>
                       
-                    </div>
+                    </div> -->
 
                     <?php }?>
-                    <?php
-                    ?>
                   </div>
                 </div>
               </td>
@@ -180,7 +245,7 @@ if (isset($_GET['user_id'])) {
     <!-- Table End -->
   </div>
 
-</div>
+
 
 <!-- Container End -->
 
