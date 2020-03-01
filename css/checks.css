@@ -20,7 +20,9 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: unset;
+    height: 100%;
+
+    /* max-width: unset; */
 
 }
 .myform{
@@ -34,7 +36,23 @@ body {
     background-color: rgb(217, 226, 226);
 }
 
+#table-head{
+    text-align: center;
+    background-color: midnightblue;
+    color: navajowhite;
+    font-size: 1.3rem;
+}
 
+.item-tab{
+    text-align: center;
+}
+
+.order-details{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: wheat;
+}
 .date-from-to{
     display: flex;
     margin-bottom: 5px;
@@ -92,16 +110,16 @@ body {
 } */
 
 .order {
-    background: #999;
+    /* background: #999; */
     padding: 10px;
 
     margin: 10px;
 }
 
-.item {
+.item-card {
     background: #faf9f4;
+    text-align: center;
     padding: 10px;
-
     margin: 10px;
 }
 

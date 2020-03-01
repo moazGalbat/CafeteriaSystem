@@ -8,17 +8,17 @@
         <link rel="stylesheet" href="../css/myorders.css">
   
 <?php
-// // session_start();
-// if (session_status() == PHP_SESSION_NONE) {
-//   session_start();
-// }
+session_start();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
 
-// if (!isset($_SESSION['loggedin'])) {
-//   header('Location: ../login.php');
-// }
-// if ($_SESSION['is_admin']==1){
-//   die ("Access Denied");
-// }
+if (!isset($_SESSION['loggedin'])) {
+  header('Location: ../login.php');
+}
+if ($_SESSION['is_admin']==1){
+  die ("Access Denied");
+}
 ?>
 
 <?php
@@ -97,7 +97,7 @@ if($to && $from)
     <!-- <div class="col-md-4"></div>
     <br>
     <div class="col-md-4"> -->
-      <form action="<?php $_PHP_SELF  ?>" method="GET" class="myform">
+      <form action="<?php $_PHP_SELF ?>" method="GET" class="myform">
         <!-- <input type="date" name="from" value="<?= $from ?>" class="form-control"> from
         <input type="date" name="to" value="<?= $to ?>" class="form-control">for <br>
         <input type="submit" value="Find" class="btn btn-dark"><br> -->
@@ -119,7 +119,6 @@ if($to && $from)
           </div>
         </div>
       </form>
-      <??>
     <!-- </div> -->
   </div>
   <!-- Date End -->
